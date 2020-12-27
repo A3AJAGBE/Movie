@@ -1,0 +1,25 @@
+body {
+    background-color: #24252A;
+    color: #F8F9FA;
+    font-family: 'Roboto Condensed', sans-serif, Helvetica;
+    font-size: 1.2rem;
+}
+
+h1, h2, h3, h4 {
+    font-weight: bold;
+}
+
+hr {
+    border-color: #F8F9FA;
+}
+
+/* Small devices (landscape phones, 576px and down) */
+@media (max-width: 576px) {
+    .navbar-brand img {
+        width: 60vw;
+    }
+
+    .jumbotron {
+        margin-top: 40px;
+    }
+}
