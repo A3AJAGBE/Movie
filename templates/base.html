@@ -16,6 +16,10 @@
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/65a82e1708.js"></script>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/M.ico' %}">
 </head>
 <body>
     <main>
@@ -24,7 +28,7 @@
 
                 <!-- Logo link -->
                 <a class="navbar-brand" href="{% url 'index' %}">
-                  LOGO
+                  <img src="{% static 'images/M_text.png' %}" alt="Movierium Logo">
                 </a>
                 <!-- Hamburger Icon -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
