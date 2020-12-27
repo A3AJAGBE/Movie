@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block title %} Home | {{ block.super }} {% endblock %}
+{% load static %}
 
 {% block content %}
 
@@ -8,12 +9,12 @@
         <div class="row">
             <div class="col-md-6 align-self-center">
                 <h1 class="display-3">Stream Movies showing in the Cinema</h1>
-                <p class="lead text-dark">We are here to bridge the gap between
+                <p class="lead">We are here to bridge the gap between
                     a film-maker and the audience, watch movies showing in the cinema at your own time on any device.</p>
                 <a class="btn btn-danger btn-lg" href="#" role="button">Get Started</a>
             </div>
             <div class="col-md-6">
-                HOME
+                <img src="{% static 'images/M_illustration.png' %}" alt="Movierium Illustration" class="w-100">
             </div>
         </div>
     </div>
