@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from django.contrib.auth.models import Group
 
 
 @admin.register(Genre)
@@ -32,3 +33,12 @@ class OrderAdmin(admin.ModelAdmin):
 @admin.register(OrderItem)
 class OrderItemAdmin(admin.ModelAdmin):
     list_display = ('Movie', 'Order', 'Quantity', 'Date_Added')
+
+
+# Customize Admin page
+
+admin.site.site_header = 'Movierium Administrator'
+admin.site.index_title = 'Admin Dashboard'
+admin.site.site_title = 'Movierium'
+
+admin.site.unregister(Group)
