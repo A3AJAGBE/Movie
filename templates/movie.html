@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} Rent latest movies | {{ block.super }} {% endblock %}
+{% block title %} Rent movies | {{ block.super }} {% endblock %}
 {% block content %}
 
 <!-- Movie Section -->
 <div class="container top">
     <h1 class="text-center">Explore movies from different part of the world.</h1>
-    <p><strong>{{ num_movies }}</strong> Movies</p>
+    <h2><strong>{{ num_movies }}</strong> Movies</h2>
     <div class="row">
         {% for movie in page_obj %}
-            {% include 'movie_iclude.html' %}
+            {% include 'movie_include.html' %}
         {% endfor %}
     </div>
 </div>
