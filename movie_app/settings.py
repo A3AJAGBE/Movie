@@ -155,3 +155,6 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 # This design the forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# This change the default logout redirection
+LOGOUT_REDIRECT_URL = 'index'
