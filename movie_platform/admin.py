@@ -21,6 +21,7 @@ class MovieAdmin(admin.ModelAdmin):
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
     list_display = ('Title', 'Summary', 'Price', 'Discount', 'Image', 'get_genre', 'Link', 'Rating')
+    prepopulated_fields = {'slug': ('Title',)}
     list_filter = ('Genre', 'Uploaded_on')
     search_fields = ('Title',)
 
