@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('movie/', views.movie, name='movie'),
     re_path(r'^movie/(?P<genre>[-\w]+)$', views.genre, name='genre'),
+    path('cart/', views.cart, name='cart'),
 ]
