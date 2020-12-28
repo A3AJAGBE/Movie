@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Genre(models.Model):
@@ -43,5 +44,20 @@ class Movie(models.Model):
     get_genre.short_description = 'Genre'
 
 
+class Order(models.Model):
+    """This model is for user order."""
+    Customer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    Date_Ordered = models.DateTimeField(auto_now_add=True)
+    Complete = models.BooleanField(default=False)
+
+    def __str__(self):
+        """String for representing the Model objects."""
+        return str(self.id)
 
 
+class OrderItem(models.Model):
+    """This model is for order item."""
+    Movie = models.ForeignKey(Movie, on_delete=models.SET_NULL, blank=True, null=True)
+    Order = models.OneToOneField(Order, on_delete=models.CASCADE)
+    Quantity = models.IntegerField(default=1)
+    Date_Added = models.DateTimeField(auto_now_add=True)
