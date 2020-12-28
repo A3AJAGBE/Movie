@@ -22,6 +22,7 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('movie_platform.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
 
 # URL maps redirect the base URL to the project app
