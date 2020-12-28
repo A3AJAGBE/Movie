@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
 from django.urls import reverse
 
 
@@ -33,6 +34,7 @@ class Movie(models.Model):
     Discount = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
     Rating = models.CharField(choices=VIEW_RATING, max_length=5, default='G')
     Uploaded_on = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(null=False, unique=True)
 
     def __str__(self):
         """String for representing the Model objects."""
@@ -45,7 +47,12 @@ class Movie(models.Model):
     get_genre.short_description = 'Genre'
 
     def get_absolute_url(self):
-        return reverse('detail', args=[str(self.id)])
+        return reverse('detail', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):  # new
+        if not self.slug:
+            self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)
 
 
 class Order(models.Model):
