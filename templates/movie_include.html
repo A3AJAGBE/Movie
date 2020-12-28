@@ -9,7 +9,7 @@
                 <small class="text-muted">{{ movie.Uploaded_on.date }} |
                     <strong>Genre:</strong>
                     {% for genre in movie.Genre.all %}
-                    <a href="#">{{ genre.Name }}</a>&nbsp;
+                    <a href="{% url 'genre' genre.Name %}">{{ genre.Name }}</a>&nbsp;
                     {% endfor %}
                 </small>
             </div>
