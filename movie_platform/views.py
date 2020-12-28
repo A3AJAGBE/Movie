@@ -23,3 +23,16 @@ def movie(request):
     }
     return render(request, 'movie.html', context)
 
+
+def genre(request, genre):
+    """View function to filter movies according to the genre."""
+    movies = Movie.objects.filter(
+        Genre__Name__contains=genre
+    ).order_by('-Uploaded_on')
+    num_movies = movies.count()
+    context = {
+        "genre": genre,
+        "movies": movies,
+        "num_movies": num_movies
+    }
+    return render(request, 'genre.html', context)
