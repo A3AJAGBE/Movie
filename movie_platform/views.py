@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from .models import *
@@ -36,3 +37,15 @@ def genre(request, genre):
         "num_movies": num_movies
     }
     return render(request, 'genre.html', context)
+
+
+def cart(request):
+    """View for cart page."""
+    customer = request.user
+    order, created = Order.objects.get_or_create(Customer=customer, Complete=False)
+    items = order.orderitem_set.all()
+    context = {
+        "item": items,
+    }
+    return render(request, 'cart.html', context)
+
