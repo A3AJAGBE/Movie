@@ -13,6 +13,10 @@ hr {
     border-color: #F8F9FA;
 }
 
+.top {
+    margin-top: 80px;
+}
+
 /* Small devices (landscape phones, 576px and down) */
 @media (max-width: 576px) {
     .navbar-brand img {
