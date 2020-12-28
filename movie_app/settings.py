@@ -146,7 +146,13 @@ SITE_ID = 1
 
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
                            'allauth.account.auth_backends.AuthenticationBackend']
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Sendgrid email setup
+DEFAULT_FROM_EMAIL = 'Movierium <noreply@movierium.com>'
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+# Remember to change this
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_REQUIRED = True
