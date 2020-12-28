@@ -47,9 +47,18 @@
                             <span class="clearfix d-none d-sm-inline-block"> Bag </span>
                             <span class="badge rounded-pill bg-primary mr-1 align-top">0</span>
                         </a>
-                        <a href="#" class="nav-item nav-link btn btn-warning btn-lg" role="button">Login</a>
+                        {% if user.is_authenticated %}
+                            <div class="nav-item nav-link dropdown btn btn-primary">
+                                <a href="" class="nav-item nav-link dropdown-toggle" data-toggle="dropdown">{{ user.username }}</a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#" class="nav-item nav-link">Change Password</a>
+                                    <a class="dropdown-item" href="{% url 'account_logout' %}" class="nav-item nav-link">Logout</a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <a href="{% url 'account_login' %}" class="nav-item nav-link btn btn-warning btn-lg" role="button">Sign In</a>
+                        {% endif %}
                     </div>
-
                 </div>
             </nav>
         </header>
