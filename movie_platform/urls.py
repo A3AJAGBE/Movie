@@ -1,4 +1,4 @@
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from . import views
 
 urlpatterns = [
@@ -6,4 +6,5 @@ urlpatterns = [
     path('movie/', views.movie, name='movie'),
     re_path(r'^movie/(?P<genre>[-\w]+)$', views.genre, name='genre'),
     path('cart/', views.cart, name='cart'),
+    path('accounts/', include('allauth.urls')),
 ]
