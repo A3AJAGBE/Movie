@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ genre }} Genre | {{ block.super }} {% endblock %}
+
+{% block content %}
+
+<!-- Movie Section -->
+<div class="container top">
+    <h1> {{ genre }}: {{ num_movies }} </h1>
+    <div class="row">
+        {% if movies %}
+            {% for movie in movies %}
+                {% include 'movie_include.html' %}
+            {% endfor %}
+        {% else %}
+            <h5>There is yet to be a movie for this genre.</h5>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
