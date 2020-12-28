@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import *
 
 
@@ -36,6 +36,15 @@ def genre(request, genre):
         "num_movies": num_movies
     }
     return render(request, 'genre.html', context)
+
+
+def detail(request, pk):
+    """View function to display the movie detail page."""
+    movie_detail = get_object_or_404(Movie, pk=pk)
+    context = {
+        "movie": movie_detail,
+    }
+    return render(request, 'detail.html', context)
 
 
 def cart(request):
