@@ -6,16 +6,15 @@
             </a>
             <div class="card-body">
                 <h3 class="card-title text-dark">{{ movie.Title | title }} </h3>
-                <small class="text-muted">{{ movie.Uploaded.date }} |
+                <small class="text-muted">{{ movie.Uploaded_on.date }} |
                     <strong>Genre:</strong>
                     {% for genre in movie.Genre.all %}
-                    <a href="{% url 'movie_genre' genre.Name %}">{{ genre.Name }}</a>&nbsp;
+                    <a href="#">{{ genre.Name }}</a>&nbsp;
                     {% endfor %}
                 </small>
             </div>
             <div class="card-footer">
-                <a href="#" class="nav-item nav-link active">Add to Bag</a>
-                <h4 style="display: inline-block; float: right"><strong>$20</strong></h4>
+                <a href="#" class="btn btn-primary btn-lg btn-block" role="button">Add to Bag for €{{ movie.Price }}</a>
               </div>
         </div>
     </div>
