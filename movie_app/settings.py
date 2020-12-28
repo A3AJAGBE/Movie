@@ -148,13 +148,16 @@ AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
                            'allauth.account.auth_backends.AuthenticationBackend']
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_REQUIRED = True
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 # This design the forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# This change the default login redirection
+LOGIN_REDIRECT_URL = 'index'
 
 # This change the default logout redirection
 LOGOUT_REDIRECT_URL = 'index'
