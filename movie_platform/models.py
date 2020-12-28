@@ -58,6 +58,6 @@ class Order(models.Model):
 class OrderItem(models.Model):
     """This model is for order item."""
     Movie = models.ForeignKey(Movie, on_delete=models.SET_NULL, blank=True, null=True)
-    Order = models.OneToOneField(Order, on_delete=models.CASCADE)
+    Order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     Quantity = models.IntegerField(default=1)
     Date_Added = models.DateTimeField(auto_now_add=True)
