@@ -54,6 +54,18 @@ class Order(models.Model):
         """String for representing the Model objects."""
         return str(self.id)
 
+    @property
+    def get_bag_total(self):
+        items = self.orderitem_set.all()
+        total = sum([item.get_total for item in items])
+        return total
+
+    @property
+    def get_bag_items(self):
+        items = self.orderitem_set.all()
+        total = sum([item.Quantity for item in items])
+        return total
+
 
 class OrderItem(models.Model):
     """This model is for order item."""
@@ -61,3 +73,8 @@ class OrderItem(models.Model):
     Order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     Quantity = models.IntegerField(default=1)
     Date_Added = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def get_item_total(self):
+        total = self.Movie.Price * self.Quantity
+        return total
