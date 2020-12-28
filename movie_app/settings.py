@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    # Forms
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -150,3 +152,6 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+# This design the forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
