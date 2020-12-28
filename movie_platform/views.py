@@ -38,9 +38,9 @@ def genre(request, genre):
     return render(request, 'genre.html', context)
 
 
-def detail(request, pk):
+def detail(request, slug):
     """View function to display the movie detail page."""
-    movie_detail = get_object_or_404(Movie, pk=pk)
+    movie_detail = get_object_or_404(Movie, slug=slug)
     context = {
         "movie": movie_detail,
     }
