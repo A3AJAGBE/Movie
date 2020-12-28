@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class Genre(models.Model):
@@ -42,6 +43,9 @@ class Movie(models.Model):
         return ",".join([str(g) for g in self.Genre.all()])
 
     get_genre.short_description = 'Genre'
+
+    def get_absolute_url(self):
+        return reverse('detail', args=[str(self.id)])
 
 
 class Order(models.Model):
