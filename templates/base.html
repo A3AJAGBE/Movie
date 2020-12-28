@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,7 +18,6 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/65a82e1708.js"></script>
 
-    {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link rel="shortcut icon" href="{% static 'images/M.ico' %}">
 </head>
@@ -42,8 +42,14 @@
                     </div>
 
                     <div class="navbar-nav ml-auto">
-                        <a href="#" class="nav-item nav-link btn btn-success btn-lg" role="button">Login</a>
+                        <a href="#" class="nav-item nav-link">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span class="clearfix d-none d-sm-inline-block"> Bag </span>
+                            <span class="badge rounded-pill bg-primary mr-1">0</span>
+                        </a>
+                        <a href="#" class="nav-item nav-link btn btn-warning btn-lg" role="button">Login</a>
                     </div>
+
                 </div>
             </nav>
         </header>
