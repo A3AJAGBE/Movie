@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %} {% trans "Verify Your E-mail Address" %} | {{ block.super }} {% endblock %}
+
+{% block content %}
+<div class="row justify-content-center top">
+    <div class="col-sm-6 text-primary">
+
+        <div class="card">
+            <div class="card-header">
+                <img class="rounded mx-auto d-block" src="{% static 'images/M.png' %}" alt="M Logo" height="100">
+            </div>
+            <div class="card-body">
+                <h1 class="text-center">{% trans "Verify Your E-mail Address" %}</h1>
+
+                <p class="text-dark">{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
+         </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
