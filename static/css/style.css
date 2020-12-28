@@ -17,6 +17,29 @@ hr {
     margin-top: 80px;
 }
 
+.asteriskField {
+    display: none;
+}
+
+form .alert ul li {
+    list-style: none;
+}
+
+form .alert ul {
+    padding: 0;
+    margin: 0;
+}
+
+a:hover {
+    font-style: italic;
+    text-decoration: none;
+}
+
+.card a{
+    text-decoration: none;
+}
+
+
 /* Small devices (landscape phones, 576px and down) */
 @media (max-width: 576px) {
     .navbar-brand img {
