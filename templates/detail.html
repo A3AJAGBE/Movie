@@ -32,7 +32,19 @@
                         </h3>
                         <h5 class="card-text">{{ movie.Summary }}</h5>
                         <p><strong class="text-warning">Rating: {{ movie.Rating }}</strong></p>
-                        <p class="card-text">{{ movie.Uploaded_on.date }}</p>
+                        <p class="card-text">Uploaded On: <strong> {{ movie.Uploaded_on.date }} </strong></p>
+                        <button type="button" class="btn btn-primary btn-lg">
+                          Price
+                            {% if movie.Discount %}
+                            <span class="mr-1 price">
+                                <del>€{{ movie.Price }}</del>
+                            </span>
+                            <span class="badge bg-dark price">€{{ movie.Discount }}</span>
+                            {% else %}
+                            <span class="badge bg-dark price">€{{ movie.Price }}</span>
+                            {% endif %}
+                        </button>
+
                     </div>
                 </div>
             </div>
