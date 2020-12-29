@@ -14,7 +14,16 @@
                 </small>
             </div>
             <div class="card-footer">
-                <a href="#" class="btn btn-primary btn-lg btn-block" role="button">Add to Bag for €{{ movie.Price }}</a>
+                <a href="#" class="btn btn-primary btn-lg btn-block" role="button">Add to Bag for
+                    {% if movie.Discount %}
+                        <span class="mr-1 price">
+                            <del>€{{ movie.Price }}</del>
+                        </span>
+                        <span class="badge bg-dark price">€{{ movie.Discount }}</span>
+                    {% else %}
+                        <span class="badge bg-dark price">€{{ movie.Price }}</span>
+                    {% endif %}
+                </a>
               </div>
         </div>
     </div>
