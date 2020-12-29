@@ -167,3 +167,9 @@ LOGIN_REDIRECT_URL = 'index'
 
 # This change the default logout redirection
 LOGOUT_REDIRECT_URL = 'index'
+
+# Stripe setup
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+
+
