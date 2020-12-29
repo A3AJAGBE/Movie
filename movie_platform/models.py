@@ -42,7 +42,7 @@ class Movie(models.Model):
 
     def get_genre(self):
         """Return the genres"""
-        return ",".join([str(g) for g in self.Genre.all()])
+        return ", ".join([str(g) for g in self.Genre.all()])
 
     get_genre.short_description = 'Genre'
 
@@ -60,8 +60,10 @@ class Movie(models.Model):
 
 class OrderItem(models.Model):
     """This model is for order item."""
+    Customer = models.ForeignKey(User, on_delete=models.CASCADE)
     Movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     Quantity = models.IntegerField(default=1)
+    Complete = models.BooleanField(default=False)
 
     def __str__(self):
         """String for representing the Model objects."""
@@ -82,6 +84,6 @@ class Order(models.Model):
 
     def get_movie(self):
         """Return the genres"""
-        return ",".join([str(m) for m in self.Movie.all()])
+        return ", ".join([str(m) for m in self.Movie.all()])
 
     get_movie.short_description = 'Movie'
