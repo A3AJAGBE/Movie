@@ -26,14 +26,14 @@ class MovieAdmin(admin.ModelAdmin):
     search_fields = ('Title',)
 
 
-@admin.register(Order)
-class OrderAdmin(admin.ModelAdmin):
-    list_display = ('Customer', 'Date_Ordered', 'Complete')
-
-
 @admin.register(OrderItem)
 class OrderItemAdmin(admin.ModelAdmin):
-    list_display = ('Movie', 'Order', 'Quantity', 'Date_Added')
+    list_display = ('Movie', 'Quantity')
+
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('Customer', 'Movie', 'Date_Added', 'Date_Ordered', 'Complete')
 
 
 # Customize Admin page
