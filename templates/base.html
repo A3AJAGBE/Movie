@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load cart_template_tags %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -46,7 +47,7 @@
                             <a href="{% url 'cart' %}" class="nav-item nav-link">
                                 <i class="fas fa-shopping-bag"></i>
                                 <span class="clearfix d-none d-sm-inline-block"> Bag </span>
-                                <span class="badge rounded-pill bg-primary mr-1 align-top">0</span>
+                                <span class="badge rounded-pill bg-primary mr-1 align-top">{{ request.user|cart_item_count }}</span>
                             </a>
                             <div class="nav-item nav-link dropdown btn btn-primary">
                                 <a href="" class="nav-item nav-link dropdown-toggle" data-toggle="dropdown">{{ user.username }}</a>
