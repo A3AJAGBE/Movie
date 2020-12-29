@@ -20,25 +20,56 @@
                 {% endif %}
             </div>
 
-            <h1>Your Shopping Bag</h1>
 
-            <div class="row no-gutters">
-                {% for item in items %}
-                <div class="col-md-4 mt-4">
-                    <img src="{{ item.Image.url }}" class="card-img h-100" alt="{{ item.Title }} Poster">
-                </div>
-
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h1 class="card-title text-primary">Renting: {{ item.Title | title }}</h1>
-                        <h3> Price: €{{ item.Movie.Price }} </h3>
-                        <h3>Quantity: {{ item.Quantity }}</h3>
-                        <p><strong class="text-warning">Rating: {{ item.Rating }}</strong></p>
-                    </div>
-                </div>
-                {% empty %}
-                <h5>The bag is empty.</h5>
-                {% endfor %}
+            <div class="table-responsive">
+                <h1>Your Shopping Bag</h1>
+              <table class="table table-primary">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">S/N</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Total Movie Price</th>
+                        <th scope="col"> </th>
+                    </tr>
+                </thead>
+                  <tbody class="table-light">
+                  {% for m in order.Movie.all %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ m.Movie.Title | title }}</td>
+                      <td>{{ m.Movie.Price }}</td>
+                      <td>{{ m.Quantity }}</td>
+                        <td>
+                            {% if m.Movie.Discount %}
+                                €{{ m.get_movie_discount_price }}
+                                <span class="badge badge-success">Saved €{{ m.get_amount_saved }}</span>
+                            {% else %}
+                                €{{ m.get_total_movie_price }}
+                            {% endif %}
+                        </td>
+                        <td><a href="{{ m.Movie.get_remove_from_cart_url }}" class="btn btn-danger btn-lg btn-block" role="button"><i class="fas fa-trash"></i></a></td>
+                    </tr>
+                  {% empty %}
+                  <tr>
+                      <td colspan="6">Shopping bag is Empty</td>
+                  </tr>
+                  <tr>
+                      <td colspan="6"><a href="{% url 'movie' %}" class="btn btn-primary btn-lg float-right">Continue Shopping</a></td>
+                  </tr>
+                  {% endfor %}
+                  {% if order.get_total %}
+                   <tr>
+                       <td colspan="4" class="text-md-right">Order Total: </td>
+                      <td colspan="5"><b>€{{ order.get_total }}</b></td>
+                  </tr>
+                  <tr>
+                      <td colspan="6"><a href="#" class="btn btn-primary btn-lg float-right">Proceed to payment</a></td>
+                  </tr>
+                  {% endif %}
+                  </tbody>
+              </table>
             </div>
         </div>
     </div>
