@@ -72,6 +72,20 @@ class OrderItem(models.Model):
         """String for representing the Model objects."""
         return self.Movie.Title
 
+    def get_total_movie_price(self):
+        return self.Quantity * self.Movie.Price
+
+    def get_movie_discount_price(self):
+        return self.Quantity * self.Movie.Discount
+
+    def get_amount_saved(self):
+        return self.get_total_movie_price() - self.get_movie_discount_price()
+
+    def get_final_price(self):
+        if self.Movie.Discount:
+            return self.get_movie_discount_price()
+        return self.get_total_movie_price()
+
 
 class Order(models.Model):
     """This model is for user order."""
@@ -90,3 +104,9 @@ class Order(models.Model):
         return ", ".join([str(m) for m in self.Movie.all()])
 
     get_movie.short_description = 'Movie'
+
+    def get_total(self):
+        total = 0
+        for m in self.Movie.all():
+            total += m.get_final_price()
+        return total
