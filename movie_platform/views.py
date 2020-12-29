@@ -1,5 +1,9 @@
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.utils import timezone
+
 from .models import *
 
 
@@ -47,13 +51,34 @@ def detail(request, slug):
     return render(request, 'detail.html', context)
 
 
+@login_required
 def cart(request):
     """View for cart page."""
-    customer = request.user
-    order, created = Order.objects.get_or_create(Customer=customer, Complete=False)
-    items = order.orderitem_set.all()
-    context = {
-        "item": items,
-    }
+    context = {}
     return render(request, 'cart.html', context)
+
+
+@login_required()
+def add_to_cart(request, slug):
+    m = get_object_or_404(Movie, slug=slug)
+    order_item = OrderItem.objects.create(
+        Movie=m
+    )
+    order_check = Order.objects.filter(Customer=request.user, Complete=False)
+    if order_check.exists():
+        order = order_check[0]
+        # check if the order item is in the order
+        if order.Movie.filter(Movie__slug=m.slug).exists():
+            messages.warning(request, 'This movie is in the shopping bag')
+            return redirect('cart')
+        else:
+            order.Movie.add(order_item)
+            messages.success(request, 'Movie added to the shopping bag.')
+            return redirect('cart')
+    else:
+        Date = timezone.now()
+        order = Order.objects.create(Customer=request.user, Date_Ordered=Date)
+        order.Movie.add(order_item)
+        messages.success(request, 'Movie added to the shopping bag.')
+        return redirect('cart')
 
