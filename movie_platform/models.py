@@ -57,6 +57,9 @@ class Movie(models.Model):
     def get_add_to_cart_url(self):
         return reverse('add_to_cart', kwargs={'slug': self.slug})
 
+    def get_remove_from_cart_url(self):
+        return reverse('remove_from_cart', kwargs={'slug': self.slug})
+
 
 class OrderItem(models.Model):
     """This model is for order item."""
