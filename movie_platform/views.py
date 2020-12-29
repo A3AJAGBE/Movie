@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
@@ -54,8 +55,15 @@ def detail(request, slug):
 @login_required
 def cart(request):
     """View for cart page."""
-    context = {}
-    return render(request, 'cart.html', context)
+    try:
+        order = Order.objects.get(Customer=request.user, Complete=False)
+        context = {
+            'order': order,
+        }
+        return render(request, 'cart.html', context)
+    except ObjectDoesNotExist:
+        messages.warning(request, "You do not have an active order")
+        return redirect('movie')
 
 
 @login_required()
@@ -72,17 +80,17 @@ def add_to_cart(request, slug):
         # check if the order item is in the order
         if order.Movie.filter(Movie__slug=m.slug).exists():
             messages.warning(request, f'"{m}" is in the shopping bag.')
-            return redirect('detail', slug=slug)
+            return redirect('cart')
         else:
             order.Movie.add(order_item)
             messages.success(request, f'"{m}" added to the shopping bag.')
-            return redirect('detail', slug=slug)
+            return redirect('cart')
     else:
         Date = timezone.now()
         order = Order.objects.create(Customer=request.user, Date_Ordered=Date)
         order.Movie.add(order_item)
         messages.success(request, f'"{m}" added to the shopping bag.')
-        return redirect('detail', slug=slug)
+        return redirect('cart')
 
 
 @login_required()
@@ -103,7 +111,7 @@ def remove_from_cart(request, slug):
             order.Movie.remove(order_item)
             order_item.delete()
             messages.success(request, f'"{m}" removed from the shopping bag')
-            return redirect('detail', slug=slug)
+            return redirect('cart')
         else:
             messages.warning(request, 'This movie not in the shopping bag')
             return redirect('detail', slug=slug)
