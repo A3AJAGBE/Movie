@@ -7,5 +7,6 @@ urlpatterns = [
     re_path(r'^movie/genre/(?P<genre>[-\w]+)$', views.genre, name='genre'),
     re_path(r'^detail/(?P<slug>[-\w]+)$', views.detail, name='detail'),
     re_path(r'^add_to_cart/(?P<slug>[-\w]+)$', views.add_to_cart, name='add_to_cart'),
+    re_path(r'^remove_from_cart/(?P<slug>[-\w]+)$', views.remove_from_cart, name='remove_from_cart'),
     path('cart/', views.cart, name='cart'),
 ]
