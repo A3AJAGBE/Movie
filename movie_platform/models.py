@@ -55,37 +55,22 @@ class Movie(models.Model):
         return super().save(*args, **kwargs)
 
 
+class OrderItem(models.Model):
+    """This model is for order item."""
+    Movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    Quantity = models.IntegerField(default=1)
+
+
 class Order(models.Model):
     """This model is for user order."""
-    Customer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    Date_Ordered = models.DateTimeField(auto_now_add=True)
+    Customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    Movie = models.OneToOneField(OrderItem, on_delete=models.CASCADE)
+    Date_Added = models.DateTimeField(auto_now_add=True)
+    Date_Ordered = models.DateTimeField()
     Complete = models.BooleanField(default=False)
 
     def __str__(self):
         """String for representing the Model objects."""
-        return str(self.id)
-
-    @property
-    def get_bag_total(self):
-        items = self.orderitem_set.all()
-        total = sum([item.get_total for item in items])
-        return total
-
-    @property
-    def get_bag_items(self):
-        items = self.orderitem_set.all()
-        total = sum([item.Quantity for item in items])
-        return total
+        return self.Customer
 
 
-class OrderItem(models.Model):
-    """This model is for order item."""
-    Movie = models.ForeignKey(Movie, on_delete=models.SET_NULL, blank=True, null=True)
-    Order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
-    Quantity = models.IntegerField(default=1)
-    Date_Added = models.DateTimeField(auto_now_add=True)
-
-    @property
-    def get_item_total(self):
-        total = self.Movie.Price * self.Quantity
-        return total
