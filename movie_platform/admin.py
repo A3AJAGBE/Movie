@@ -28,12 +28,12 @@ class MovieAdmin(admin.ModelAdmin):
 
 @admin.register(OrderItem)
 class OrderItemAdmin(admin.ModelAdmin):
-    list_display = ('Movie', 'Quantity')
+    list_display = ('Customer', 'Movie', 'Quantity', 'Complete')
 
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('Customer', 'Movie', 'Date_Added', 'Date_Ordered', 'Complete')
+    list_display = ('Customer', 'get_movie', 'Date_Added', 'Date_Ordered', 'Complete')
 
 
 # Customize Admin page
