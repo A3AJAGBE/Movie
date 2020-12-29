@@ -11,7 +11,9 @@
                   {% for message in messages %}
                     <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
                         {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                             <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                        </button>
                     </div>
                   {% endfor %}
                 {% endif %}
@@ -31,19 +33,21 @@
                             {% endfor %}
                         </h3>
                         <h5 class="card-text">{{ movie.Summary }}</h5>
-                        <p><strong class="text-warning">Rating: {{ movie.Rating }}</strong></p>
-                        <p class="card-text">Uploaded On: <strong> {{ movie.Uploaded_on.date }} </strong></p>
-                        <button type="button" class="btn btn-primary btn-lg">
+                        <button type="button" class="btn btn-warning btn-lg mb-4">
                           Price
                             {% if movie.Discount %}
                             <span class="mr-1 price">
                                 <del>€{{ movie.Price }}</del>
                             </span>
-                            <span class="badge bg-dark price">€{{ movie.Discount }}</span>
+                            <span class="badge bg-light price">€{{ movie.Discount }}</span>
                             {% else %}
-                            <span class="badge bg-dark price">€{{ movie.Price }}</span>
+                            <span class="badge bg-light price">€{{ movie.Price }}</span>
                             {% endif %}
                         </button>
+                        <p><strong class="text-warning">Rating: {{ movie.Rating }}</strong></p>
+                        <p class="card-text">Uploaded On: <strong> {{ movie.Uploaded_on.date }} </strong></p>
+                        <a href="{{ movie.get_add_to_cart_url }}" class="btn btn-primary btn-lg btn-block" role="button">Add to Shopping Bag <i class="fas fa-shopping-bag"></i> </a>
+                        <a href="{{ movie.get_remove_from_cart_url }}" class="btn btn-danger btn-lg btn-block" role="button">Remove from Shopping Bag <i class="fas fa-shopping-bag"></i> </a>
 
                     </div>
                 </div>
