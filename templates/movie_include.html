@@ -14,7 +14,7 @@
                 </small>
             </div>
             <div class="card-footer">
-                <a href="#" class="btn btn-primary btn-lg btn-block" role="button">Add to Bag for
+                <a href="{{ movie.get_add_to_cart_url }}" class="btn btn-primary btn-lg btn-block" role="button">Add to <i class="fas fa-shopping-bag"></i> for
                     {% if movie.Discount %}
                         <span class="mr-1 price">
                             <del>€{{ movie.Price }}</del>
