@@ -33,7 +33,12 @@ class OrderItemAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('Customer', 'get_movie', 'Date_Added', 'Date_Ordered', 'Complete')
+    list_display = ('Customer', 'get_movie', 'Date_Added', 'Date_Ordered', 'Complete', 'Payment')
+
+
+@admin.register(Payment)
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = ('Stripe_Charge_ID', 'Customer', 'Amount', 'Timestamp',)
 
 
 # Customize Admin page
