@@ -62,7 +62,9 @@ def cart(request):
 def add_to_cart(request, slug):
     m = get_object_or_404(Movie, slug=slug)
     order_item = OrderItem.objects.create(
-        Movie=m
+        Movie=m,
+        Customer=request.user,
+        Complete=False
     )
     order_check = Order.objects.filter(Customer=request.user, Complete=False)
     if order_check.exists():
