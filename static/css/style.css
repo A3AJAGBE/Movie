@@ -39,6 +39,10 @@ a:hover {
     text-decoration: none;
 }
 
+.price {
+    font-size: 1.2rem;
+}
+
 
 /* Small devices (landscape phones, 576px and down) */
 @media (max-width: 576px) {
