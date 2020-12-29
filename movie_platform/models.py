@@ -49,10 +49,13 @@ class Movie(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'slug': self.slug})
 
-    def save(self, *args, **kwargs):  # new
+    def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
+            self.slug = slugify(self.Title)
         return super().save(*args, **kwargs)
+
+    def get_add_to_cart_url(self):
+        return reverse('add_to_cart', kwargs={'slug': self.slug})
 
 
 class OrderItem(models.Model):
@@ -60,17 +63,25 @@ class OrderItem(models.Model):
     Movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     Quantity = models.IntegerField(default=1)
 
+    def __str__(self):
+        """String for representing the Model objects."""
+        return self.Movie.Title
+
 
 class Order(models.Model):
     """This model is for user order."""
     Customer = models.ForeignKey(User, on_delete=models.CASCADE)
-    Movie = models.OneToOneField(OrderItem, on_delete=models.CASCADE)
+    Movie = models.ManyToManyField(OrderItem)
     Date_Added = models.DateTimeField(auto_now_add=True)
     Date_Ordered = models.DateTimeField()
     Complete = models.BooleanField(default=False)
 
     def __str__(self):
         """String for representing the Model objects."""
-        return self.Customer
+        return self.Customer.username
 
+    def get_movie(self):
+        """Return the genres"""
+        return ",".join([str(m) for m in self.Movie.all()])
 
+    get_movie.short_description = 'Movie'
