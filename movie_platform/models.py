@@ -94,6 +94,7 @@ class Order(models.Model):
     Date_Added = models.DateTimeField(auto_now_add=True)
     Date_Ordered = models.DateTimeField()
     Complete = models.BooleanField(default=False)
+    Payment = models.ForeignKey('Payment', on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         """String for representing the Model objects."""
@@ -110,3 +111,14 @@ class Order(models.Model):
         for m in self.Movie.all():
             total += m.get_final_price()
         return total
+
+
+class Payment(models.Model):
+    """This model is for payment processing"""
+    Stripe_Charge_ID = models.CharField(max_length=50)
+    Customer = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
+    Amount = models.DecimalField(max_digits=4, decimal_places=2)
+    Timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.Customer.username
