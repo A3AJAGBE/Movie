@@ -18,7 +18,8 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def index(request):
     """View for index page."""
-    context = {}
+    recent = Movie.objects.all().order_by('-Uploaded_on')[:6]
+    context = {"recent": recent}
     return render(request, 'index.html', context)
 
 
