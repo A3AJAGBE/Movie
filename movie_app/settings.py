@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import os
 from configurations import Configuration
-from pathlib import Path
 from decouple import config
 from dotenv import load_dotenv
 load_dotenv()
@@ -193,10 +192,16 @@ class Production(Configuration):
             'NAME': config('DB_NAME'),
             'USER': config('DB_USER'),
             'PASSWORD': config('DB_PASSWORD'),
-            'HOST': config('DB_HOST'),
-            'PORT': ''
         }
     }
+
+    # Heroku: Update database configuration from $DATABASE_URL.
+    # import dj_database_url
+    # db_from_env = dj_database_url.config(conn_max_age=500)
+    # DATABASES['default'].update(db_from_env)
+
+    import dj_database_url
+    DATABASES = {'default': dj_database_url.config(conn_max_age=500)}
 
 
 
