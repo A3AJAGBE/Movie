@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Contact Us | {{ block.super }} {% endblock %}
+{% block content %}
+
+
+<div class="row justify-content-center top">
+    <div class="col-sm-6 text-primary">
+        {% include 'messages.html' %}con
+
+        <div class="card">
+            <div class="card-header">
+                <img class="rounded mx-auto d-block" src="{% static 'images/M.png' %}" alt="M Logo" height="100">
+            </div>
+            <div class="card-body">
+                <h1 class="text-center">Get in touch with us</h1>
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    {{ form|crispy }}
+
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
