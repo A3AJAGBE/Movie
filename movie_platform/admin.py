@@ -38,6 +38,15 @@ class OrderAdmin(admin.ModelAdmin):
     search_fields = ('Customer', )
     list_filter = ('Payment', 'Complete')
 
+    fieldsets = (
+        (None, {
+            'fields': ('Movie', 'Order_Code', 'Coupon')
+        }),
+        ('Validity', {
+            'fields': ('Customer', 'Complete', 'Payment', 'Status', 'Due')
+        }),
+    )
+
 
 @admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
