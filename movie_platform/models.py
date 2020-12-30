@@ -142,3 +142,14 @@ class Coupon(models.Model):
 
     def __str__(self):
         return self.Code
+
+
+class Contact(models.Model):
+    """This model is for contact."""
+    Email = models.EmailField(null=False)
+    Subject = models.CharField(max_length=100, null=False, help_text='Enter a heading for your message')
+    Message = models.TextField(null=False, help_text='Enter your the content of your message')
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return f'Message from {self.Email}'
