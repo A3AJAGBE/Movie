@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
+from .forms import CouponForm
 from .models import *
 import stripe
 from django.conf import settings
@@ -192,5 +193,35 @@ def payment(request):
     else:
         order = Order.objects.get(Customer=request.user, Complete=False)
         STRIPE_PUBLIC_KEY = settings.STRIPE_PUBLIC_KEY
-        context = {'order': order, 'STRIPE_PUBLIC_KEY': STRIPE_PUBLIC_KEY}
+        context = {'order': order, 'STRIPE_PUBLIC_KEY': STRIPE_PUBLIC_KEY, 'CouponForm': CouponForm}
         return render(request, 'payment.html', context)
+
+
+def get_coupon(request, code):
+    """View for coupon code verification"""
+    try:
+        coupon = Coupon.objects.get(Code=code)
+        return coupon
+    except ObjectDoesNotExist:
+        messages.warning(request, "This coupon does not exist")
+        return redirect('payment')
+
+
+def add_coupon(request):
+    """View for coupon code"""
+    if request.method == 'POST':
+        form = CouponForm(request.POST or None)
+        if form.is_valid():
+            try:
+                code = form.cleaned_data.get('code')
+                order = Order.objects.get(Customer=request.user, Complete=False)
+                order.Coupon = get_coupon(request, code)
+                order.save()
+                messages.success(request, "Successfully added coupon")
+                return redirect('payment')
+            except ObjectDoesNotExist:
+                messages.warning(request, "Shopping bag is empty")
+                return redirect('payment')
+        else:
+            messages.warning(request, "Invalid Code")
+            return redirect('payment')
