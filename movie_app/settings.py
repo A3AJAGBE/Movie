@@ -169,8 +169,7 @@ class Develop(Configuration):
             'NAME': 'Movie_APP',
             'USER': 'root',
             'PASSWORD': 'root',
-            'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',
-            'PORT': '',
+            'HOST': 'localhost:8889',
         }
     }
 
@@ -192,6 +191,7 @@ class Production(Configuration):
             'NAME': config('DB_NAME'),
             'USER': config('DB_USER'),
             'PASSWORD': config('DB_PASSWORD'),
+            'HOST': config('DB_HOST'),
         }
     }
 
