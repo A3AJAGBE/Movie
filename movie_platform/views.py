@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 import shortuuid
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -156,6 +158,7 @@ def payment(request):
             order.Complete = True
             order.Payment = True
             order.Order_Code = shortuuid.ShortUUID().random(length=20)
+            order.Due = timezone.now() + timedelta(hours=3)
             order.save()
 
             messages.success(request, "Payment processed successfully")
