@@ -1,3 +1,4 @@
+import shortuuid
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
@@ -154,6 +155,7 @@ def payment(request):
 
             order.Complete = True
             order.Payment = pay
+            order.Order_Code = shortuuid.ShortUUID().random(length=20)
             order.save()
 
             messages.success(request, "Payment processed successfully")
@@ -162,34 +164,34 @@ def payment(request):
             # Since it's a decline, stripe.error.CardError will be caught
             body = e.json_body
             err = body.get('error', {})
-            messages.error(request, f"{err.get('message')}")
+            messages.warning(request, f"{err.get('message')}")
             return redirect('payment')
         except stripe.error.RateLimitError:
             # Too many requests made to the API too quickly
-            messages.error(request, "To many request error")
+            messages.warning(request, "To many request error")
             return redirect('payment')
         except stripe.error.InvalidRequestError:
             # Invalid parameters were supplied to Stripe's API
-            messages.error(request, "Invalid Card Information")
+            messages.warning(request, "Invalid Card Information")
             return redirect('payment')
         except stripe.error.AuthenticationError:
             # Authentication with Stripe's API failed
             # (maybe you changed API keys recently)
-            messages.error(request, "Authentication with stripe failed")
+            messages.warning(request, "Authentication with stripe failed")
             return redirect('payment')
         except stripe.error.APIConnectionError:
             # Network communication with Stripe failed
-            messages.error(request, "Network Error")
+            messages.warning(request, "Network Error")
             return redirect('payment')
         except stripe.error.StripeError:
             # Display a very generic error to the user, and maybe send
             # yourself an email
-            messages.error(request, "Something went wrong, Payment processing failed. Kindly, try again")
+            messages.warning(request, "Something went wrong, Payment processing failed. Kindly, try again")
             return redirect('payment')
 
         except Exception as e:
             # Something else happened, completely unrelated to Stripe
-            messages.error(request, "An error occur on our end, we have been notified")
+            messages.warning(request, "An error occur on our end, we have been notified")
     else:
         order = Order.objects.get(Customer=request.user, Complete=False)
         STRIPE_PUBLIC_KEY = settings.STRIPE_PUBLIC_KEY
@@ -197,6 +199,7 @@ def payment(request):
         return render(request, 'payment.html', context)
 
 
+@login_required
 def get_coupon(request, code):
     """View for coupon code verification"""
     try:
@@ -207,6 +210,7 @@ def get_coupon(request, code):
         return redirect('payment')
 
 
+@login_required
 def add_coupon(request):
     """View for coupon code"""
     if request.method == 'POST':
