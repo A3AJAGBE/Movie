@@ -1,2 +1,4 @@
 .env
 movie_platform/migrations
+
+.coverage
