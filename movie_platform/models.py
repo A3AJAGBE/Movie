@@ -164,3 +164,15 @@ class Contact(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return f'Message from {self.Email}'
+
+
+class Review(models.Model):
+    """This model is for the reviews."""
+    Author = models.ForeignKey(User, on_delete=models.CASCADE)
+    Review = models.CharField(max_length=200, null=False)
+    Posted = models.DateTimeField(auto_now_add=True)
+    Movie = models.ForeignKey('Movie', on_delete=models.CASCADE)
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return f'Review for {self.Movie} by {self.Author}'
