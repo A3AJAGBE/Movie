@@ -20,9 +20,9 @@
                 {% get_providers as socialaccount_providers %}
 
                 {% if socialaccount_providers %}
-                <p>{% blocktrans with site.name as site_name %}Please sign in with one
-                of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-                for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+                <p class="text-dark">{% blocktrans with site.name as site_name %}Kindly sign in with one
+                of your existing third party accounts. Or, <a href="{{ signup_url }}">Sign Up</a>
+                for a {{ site_name }} account and Sign In below:{% endblocktrans %}</p>
 
                 <div class="socialaccount_ballot">
 
@@ -37,8 +37,8 @@
                 {% include "socialaccount/snippets/login_extra.html" %}
 
                 {% else %}
-                <p>{% blocktrans %}If you have not created an account yet, then please
-                <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+                <p class="text-dark">{% blocktrans %}Don't have an account?
+                <a href="{{ signup_url }}" class="text-danger">Get Started</a>{% endblocktrans %}</p>
                 {% endif %}
 
                 <form class="login" method="POST" action="{% url 'account_login' %}" novalidate>
@@ -47,7 +47,7 @@
                   {% if redirect_field_value %}
                   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                   {% endif %}
-                  <a class="text-danger" href="{% url 'account_reset_password' %} m">{% trans "Forgot Password?" %}</a>
+                  <a class="text-danger" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
                   <button class="btn btn-primary btn-lg btn-block" type="submit">{% trans "Sign In" %}</button>
                 </form>
             </div>
