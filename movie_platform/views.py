@@ -154,7 +154,7 @@ def payment(request):
                 item.save
 
             order.Complete = True
-            order.Payment = pay
+            order.Payment = True
             order.Order_Code = shortuuid.ShortUUID().random(length=20)
             order.save()
 

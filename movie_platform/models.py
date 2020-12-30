@@ -94,7 +94,7 @@ class Order(models.Model):
     Movie = models.ManyToManyField(OrderItem)
     Date_Ordered = models.DateTimeField()
     Complete = models.BooleanField(default=False)
-    Payment = models.ForeignKey('Payment', on_delete=models.SET_NULL, blank=True, null=True)
+    Payment = models.BooleanField(default=False)
     Coupon = models.ForeignKey('Coupon', on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):

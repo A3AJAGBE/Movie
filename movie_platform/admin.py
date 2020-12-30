@@ -34,6 +34,9 @@ class OrderItemAdmin(admin.ModelAdmin):
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('Customer', 'get_movie', 'Date_Ordered', 'Order_Code', 'Complete', 'Payment', 'Coupon')
+    list_display_links = ('Customer', 'Coupon')
+    search_fields = ('Customer', )
+    list_filter = ('Payment', 'Complete')
 
 
 @admin.register(Payment)
