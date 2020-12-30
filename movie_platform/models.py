@@ -123,6 +123,16 @@ class Order(models.Model):
             total -= self.Coupon.Amount
         return total
 
+    @property
+    def is_overdue(self):
+        order_time = self.Date_Ordered
+        due_time = self.Due
+        if due_time and order_time > due_time:
+            self.Status = 'In'
+            self.save()
+            return True
+        return False
+
 
 class Payment(models.Model):
     """This model is for payment processing"""
