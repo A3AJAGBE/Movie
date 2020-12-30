@@ -87,6 +87,12 @@ class OrderItem(models.Model):
         return self.get_total_movie_price()
 
 
+STATUS = (
+    ('V', 'Valid'),
+    ('In', 'Invalid')
+)
+
+
 class Order(models.Model):
     """This model is for user order."""
     Customer = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -96,6 +102,8 @@ class Order(models.Model):
     Complete = models.BooleanField(default=False)
     Payment = models.BooleanField(default=False)
     Coupon = models.ForeignKey('Coupon', on_delete=models.SET_NULL, blank=True, null=True)
+    Due = models.DateTimeField(null=True, blank=True)
+    Status = models.CharField(choices=STATUS, max_length=2, default='V')
 
     def __str__(self):
         """String for representing the Model objects."""
