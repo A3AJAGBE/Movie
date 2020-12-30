@@ -91,7 +91,6 @@ class Order(models.Model):
     """This model is for user order."""
     Customer = models.ForeignKey(User, on_delete=models.CASCADE)
     Movie = models.ManyToManyField(OrderItem)
-    Date_Added = models.DateTimeField(auto_now_add=True)
     Date_Ordered = models.DateTimeField()
     Complete = models.BooleanField(default=False)
     Payment = models.ForeignKey('Payment', on_delete=models.SET_NULL, blank=True, null=True)
