@@ -146,6 +146,11 @@ def payment(request):
             pay.save()
 
             # Assign payment to order
+            order_items = order.Movie.all()
+            order_items.update(Complete=True)
+            for item in order_items:
+                item.save
+
             order.Complete = True
             order.Payment = pay
             order.save()
