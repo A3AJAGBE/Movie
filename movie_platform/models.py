@@ -122,3 +122,12 @@ class Payment(models.Model):
 
     def __str__(self):
         return self.Customer.username
+
+
+class Coupon(models.Model):
+    """This model is for coupon code"""
+    Code = models.CharField(max_length=15)
+    Amount = models.DecimalField(max_digits=4, decimal_places=2)
+
+    def __str__(self):
+        return self.Code
