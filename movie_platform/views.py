@@ -258,3 +258,16 @@ def add_coupon(request):
         else:
             messages.warning(request, "Invalid Code")
             return redirect('payment')
+
+
+@login_required
+def dashboard(request):
+    """View for dashboard"""
+    order = Order.objects.filter(Customer=request.user, Complete=True, Payment=True)
+    num_rent = order.count()
+    context = {
+        'order': order,
+        'num_rent': num_rent
+    }
+    return render(request, 'dashboard.html', context)
+
