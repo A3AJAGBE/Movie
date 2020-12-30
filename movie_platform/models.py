@@ -149,6 +149,7 @@ class Contact(models.Model):
     Email = models.EmailField(null=False)
     Subject = models.CharField(max_length=100, null=False, help_text='Enter a heading for your message')
     Message = models.TextField(null=False, help_text='Enter your the content of your message')
+    Reply = models.BooleanField(default=False)
 
     def __str__(self):
         """String for representing the Model object."""
