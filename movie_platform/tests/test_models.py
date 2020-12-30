@@ -1,19 +1,9 @@
 from django.test import TestCase
-from django.urls import resolve
+from django.urls import reverse, resolve
 
-from .models import *
-from .views import index
+from movie_platform.models import Genre
 
-
-class IndexTest(TestCase):
-    def test_index_view_status_code(self):
-        url = reverse('index')
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
-
-    def test_index_url_resolves_index_view(self):
-        view = resolve('/')
-        self.assertEquals(view.func, index)
+from movie_platform.views import genre
 
 
 class GenreModelTest(TestCase):
@@ -31,3 +21,8 @@ class GenreModelTest(TestCase):
         genre = Genre.objects.get(id=1)
         max_length = genre._meta.get_field('Name').max_length
         self.assertEqual(max_length, 50)
+
+    def test_movie_genre_view_success_status_code(self):
+        url = reverse('genre', kwargs={'genre': 'Romance'})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
