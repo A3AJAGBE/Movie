@@ -57,6 +57,11 @@ class PaymentAdmin(admin.ModelAdmin):
 class Coupon(admin.ModelAdmin):
     list_display = ('Code', 'Amount')
 
+
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('Email', 'Subject', 'Reply')
+
 # Customize Admin page
 
 
