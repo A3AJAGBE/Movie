@@ -8,6 +8,7 @@ urlpatterns = [
     re_path(r'^detail/(?P<slug>[-\w]+)$', views.detail, name='detail'),
     re_path(r'^add_to_cart/(?P<slug>[-\w]+)$', views.add_to_cart, name='add_to_cart'),
     re_path(r'^remove_from_cart/(?P<slug>[-\w]+)$', views.remove_from_cart, name='remove_from_cart'),
+    path('add_coupon/', views.add_coupon, name='add_coupon'),
     path('cart/', views.cart, name='cart'),
     path('payment/', views.payment, name='payment'),
 ]
