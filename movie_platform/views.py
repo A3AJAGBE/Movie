@@ -4,11 +4,12 @@ import shortuuid
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.mail import send_mail, BadHeaderError
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
-from .forms import CouponForm
+from .forms import CouponForm, ContactForm
 from .models import *
 import stripe
 from django.conf import settings
@@ -57,6 +58,30 @@ def detail(request, slug):
         "movie": movie_detail,
     }
     return render(request, 'detail.html', context)
+
+
+def contact(request):
+    """View function of contact us page."""
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            from_email = form.cleaned_data.get('Email')
+            subject = form.cleaned_data.get('Subject')
+            message = form.cleaned_data.get('Message')
+            try:
+                mail = Contact(Email=from_email, Subject=subject, Message=message)
+                mail.save()
+                send_mail(subject, message, from_email, ['Movierium Support <contact@movierium.com>'],
+                          fail_silently=True)
+            except BadHeaderError:
+                messages.warning(request, 'Invalid header found.')
+            messages.success(request, 'Your message was sent successfully, Thanks for contacting us!.')
+            return redirect('contact')
+        else:
+            messages.warning(request, 'Your message failed to send.')
+    return render(request, 'contact.html', {'form': form})
 
 
 @login_required
