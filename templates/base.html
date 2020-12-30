@@ -60,6 +60,7 @@
                             <div class="nav-item nav-link dropdown btn btn-primary">
                                 <a href="" class="nav-item nav-link dropdown-toggle" data-toggle="dropdown">{{ user.username }}</a>
                                 <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="{% url 'dashboard' %}" class="nav-item nav-link">Dashboard</a>
                                     <a class="dropdown-item" href="{% url 'account_email' %}" class="nav-item nav-link">Change Email</a>
                                     <a class="dropdown-item" href="{% url 'account_change_password' %}" class="nav-item nav-link">Change Password</a>
                                     <a class="dropdown-item" href="{% url 'account_logout' %}" class="nav-item nav-link">Logout</a>
