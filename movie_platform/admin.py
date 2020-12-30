@@ -41,7 +41,12 @@ class PaymentAdmin(admin.ModelAdmin):
     list_display = ('Stripe_Charge_ID', 'Customer', 'Amount', 'Timestamp',)
 
 
+@admin.register(Coupon)
+class Coupon(admin.ModelAdmin):
+    list_display = ('Code', 'Amount')
+
 # Customize Admin page
+
 
 admin.site.site_header = 'Movierium Administrator'
 admin.site.index_title = 'Admin Dashboard'
