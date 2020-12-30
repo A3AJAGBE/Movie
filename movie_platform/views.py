@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
-from .forms import CouponForm, ContactForm
+from .forms import CouponForm, ContactForm, ReviewForm
 from .models import *
 import stripe
 from django.conf import settings
@@ -55,8 +55,23 @@ def genre(request, genre):
 def detail(request, slug):
     """View function to display the movie detail page."""
     movie_detail = get_object_or_404(Movie, slug=slug)
+    reviews = Review.objects.filter(Movie=movie_detail)
+
+    form = ReviewForm()
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = Review(
+                Author=request.user,
+                Review=form.cleaned_data["Review"],
+                Movie=movie_detail,
+            )
+            review.save()
+            messages.success(request, 'Movie review submitted successfully!!!')
     context = {
         "movie": movie_detail,
+        "reviews": reviews,
+        "form": form,
     }
     return render(request, 'detail.html', context)
 
