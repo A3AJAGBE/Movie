@@ -26,4 +26,14 @@
     </div>
 </div>
 
+<!-- Movie Section -->
+<div class="container">
+    <h2>Top 6 Recent Releases <i class="fas fa-angle-right"></i></h2>
+    <div class="row">
+        {% for movie in recent %}
+            {% include 'movie_include.html' %}
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock %}
