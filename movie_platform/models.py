@@ -90,6 +90,7 @@ class OrderItem(models.Model):
 class Order(models.Model):
     """This model is for user order."""
     Customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    Order_Code = models.CharField(max_length=20, blank=True, null=True)
     Movie = models.ManyToManyField(OrderItem)
     Date_Ordered = models.DateTimeField()
     Complete = models.BooleanField(default=False)
