@@ -57,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
 ]
 
 ROOT_URLCONF = 'movie_app.urls'
@@ -173,3 +174,12 @@ STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 
 
+SERVER_EMAIL = 'Movierium <noreply@movierium.com>'
+EMAIL_SUBJECT_PREFIX = ['Movierium System']
+ADMINS = [
+    ('Aminat Ajagbe', 'contact@movierium.com'),
+]
+
+MANAGERS = [
+    ('Aminat Ajagbe', 'contact@movierium.com'),
+]
