@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import ModelForm
+from .models import Contact
 
 
 class CouponForm(forms.Form):
@@ -6,3 +8,10 @@ class CouponForm(forms.Form):
         'class': 'form-control',
         'placeholder': 'Coupon Code'
     }))
+
+
+class ContactForm(ModelForm):
+
+    class Meta:
+        model = Contact
+        fields = '__all__'
