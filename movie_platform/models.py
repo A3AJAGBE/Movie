@@ -95,6 +95,7 @@ class Order(models.Model):
     Date_Ordered = models.DateTimeField()
     Complete = models.BooleanField(default=False)
     Payment = models.ForeignKey('Payment', on_delete=models.SET_NULL, blank=True, null=True)
+    Coupon = models.ForeignKey('Coupon', on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         """String for representing the Model objects."""
@@ -110,6 +111,8 @@ class Order(models.Model):
         total = 0
         for m in self.Movie.all():
             total += m.get_final_price()
+        if self.Coupon:
+            total -= self.Coupon.Amount
         return total
 
 
