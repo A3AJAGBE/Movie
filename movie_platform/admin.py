@@ -33,7 +33,7 @@ class OrderItemAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('Customer', 'get_movie', 'Date_Added', 'Date_Ordered', 'Complete', 'Payment')
+    list_display = ('Customer', 'get_movie', 'Date_Added', 'Date_Ordered', 'Complete', 'Payment', 'Coupon')
 
 
 @admin.register(Payment)
