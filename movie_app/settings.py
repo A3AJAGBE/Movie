@@ -9,177 +9,178 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+
+
 import os
+from configurations import Configuration
 from pathlib import Path
+from decouple import config
 from dotenv import load_dotenv
 load_dotenv()
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
+class Configuration(Configuration):
+    # Build paths inside the project like this: BASE_DIR / 'subdir'.
+    BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+    # Quick-start development settings - unsuitable for production
+    # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+    # Application definition
 
-ALLOWED_HOSTS = []
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'movie_platform',
+        # All Auth
+        'django.contrib.sites',
+        'allauth',
+        'allauth.account',
+        'allauth.socialaccount',
+        # Forms
+        'crispy_forms',
+    ]
 
+    MIDDLEWARE = [
+        'django.middleware.security.SecurityMiddleware',
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        'django.middleware.common.BrokenLinkEmailsMiddleware',
+    ]
 
-# Application definition
+    ROOT_URLCONF = 'movie_app.urls'
 
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'movie_platform',
-    # All Auth
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    # Forms
-    'crispy_forms',
-]
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.common.BrokenLinkEmailsMiddleware',
-]
-
-ROOT_URLCONF = 'movie_app.urls'
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [BASE_DIR / 'templates'],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                ],
+            },
         },
-    },
-]
+    ]
 
-WSGI_APPLICATION = 'movie_app.wsgi.application'
+    WSGI_APPLICATION = 'movie_app.wsgi.application'
+
+    AUTH_PASSWORD_VALIDATORS = [
+        {
+            'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        },
+    ]
+
+    LANGUAGE_CODE = 'en-us'
+
+    TIME_ZONE = 'UTC'
+
+    USE_I18N = True
+
+    USE_L10N = True
+
+    USE_TZ = True
+
+    STATIC_URL = '/static/'
+
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static')
+    ]
+
+    MEDIA_URL = '/images/'
+
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+    # All auth
+    SITE_ID = 1
+
+    AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
+                               'allauth.account.auth_backends.AuthenticationBackend']
+
+    # Sendgrid email setup
+    DEFAULT_FROM_EMAIL = 'Movierium <noreply@movierium.com>'
+    EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+    SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+
+    ACCOUNT_AUTHENTICATION_METHOD = 'username'
+    ACCOUNT_EMAIL_REQUIRED = True
+
+    ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+    # This design the forms
+    CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+    # This change the default login redirection
+    LOGIN_REDIRECT_URL = 'index'
+
+    # This change the default logout redirection
+    LOGOUT_REDIRECT_URL = 'index'
+
+    # Stripe setup
+    STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+    STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+
+    SERVER_EMAIL = 'Movierium <noreply@movierium.com>'
+    EMAIL_SUBJECT_PREFIX = ['Movierium System']
+    ADMINS = [
+        ('Aminat Ajagbe', 'contact@movierium.com'),
+    ]
+
+    MANAGERS = [
+        ('Aminat Ajagbe', 'contact@movierium.com'),
+    ]
 
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+class Develop(Configuration):
+    # development settings here...
+    DEBUG = True
+    ALLOWED_HOSTS = ['127.0.0.1']
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Movie_APP',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',
-        'PORT': '',
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'Movie_APP',
+            'USER': 'root',
+            'PASSWORD': 'root',
+            'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',
+            'PORT': '',
+        }
     }
-}
 
 
-# Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+class Production(Configuration):
+    # production settings here...
+    DEBUG = config('DEBUG', default=False, cast=bool)
+    ALLOWED_HOSTS = ['movierium.com']
+    SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=False, cast=bool)
+    SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE')
+    CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE')
+    SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS')
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=False, cast=bool)
+    SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', default=False, cast=bool)
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
-
-MEDIA_URL = '/images/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
-
-# All auth
-SITE_ID = 1
-
-AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
-                           'allauth.account.auth_backends.AuthenticationBackend']
-
-# Sendgrid email setup
-DEFAULT_FROM_EMAIL = 'Movierium <noreply@movierium.com>'
-EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
-SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
-# Remember to change this
-SENDGRID_SANDBOX_MODE_IN_DEBUG = False
-
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
-ACCOUNT_EMAIL_REQUIRED = True
-
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-
-# This design the forms
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-# This change the default login redirection
-LOGIN_REDIRECT_URL = 'index'
-
-# This change the default logout redirection
-LOGOUT_REDIRECT_URL = 'index'
-
-# Stripe setup
-STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
-STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
-
-
-SERVER_EMAIL = 'Movierium <noreply@movierium.com>'
-EMAIL_SUBJECT_PREFIX = ['Movierium System']
-ADMINS = [
-    ('Aminat Ajagbe', 'contact@movierium.com'),
-]
-
-MANAGERS = [
-    ('Aminat Ajagbe', 'contact@movierium.com'),
-]
