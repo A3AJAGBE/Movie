@@ -233,6 +233,9 @@ def payment(request):
 
         except Exception as e:
             # Something else happened, completely unrelated to Stripe
+            subject = 'Stripe payment error'
+            message = 'An error occur while processing payment for user'
+            mail_admins(subject, message, fail_silently=False)
             messages.warning(request, "An error occur on our end, we have been notified")
     else:
         order = Order.objects.get(Customer=request.user, Complete=False)
