@@ -45,6 +45,13 @@
 
                     <div class="navbar-nav ml-auto">
                         {% if user.is_authenticated %}
+                            {% if user.is_staff %}
+                                <a href="#" class="nav-item nav-link">
+                                    <i class="fas fa-bell"></i>
+                                    <span class="badge rounded-pill bg-danger align-top">{{ request.user|contact_count }}</span>
+                                </a>
+
+                            {% endif %}
                             <a href="{% url 'cart' %}" class="nav-item nav-link">
                                 <i class="fas fa-shopping-bag"></i>
                                 <span class="clearfix d-none d-sm-inline-block"> Bag </span>
