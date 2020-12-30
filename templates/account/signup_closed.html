@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %} {% trans "Sign Up Closed" %} | {{ block.super }} {% endblock %}
+
+{% block content %}
+<div class="row justify-content-center top">
+    <div class="col-sm-6 text-primary">
+
+        <div class="card">
+            <div class="card-header">
+                <img class="rounded mx-auto d-block" src="{% static 'images/M.png' %}" alt="M Logo" height="100">
+            </div>
+            <div class="card-body">
+                <h1 class="text-center">{% trans "Sign Up Closed" %}</h1>
+                <p class="text-dark">{% trans "We are sorry, but the sign up is currently closed." %}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
