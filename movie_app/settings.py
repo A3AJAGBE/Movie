@@ -20,7 +20,7 @@ class Configuration(Configuration):
     # Quick-start development settings - unsuitable for production
     # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
     # SECURITY WARNING: keep the secret key used in production secret!
-    SECRET_KEY = config('SECRET_KEY')
+    SECRET_KEY = os.environ.get('SECRET_KEY')
     # Application definition
     INSTALLED_APPS = [
         'django.contrib.admin',
@@ -39,8 +39,8 @@ class Configuration(Configuration):
         'crispy_forms',
     ]
     MIDDLEWARE = [
-        'django.middleware.security.SecurityMiddleware',
         'whitenoise.middleware.WhiteNoiseMiddleware',
+        'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
@@ -92,11 +92,16 @@ class Configuration(Configuration):
     USE_TZ = True
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/3.1/howto/static-files/
+
+    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
     STATIC_URL = '/static/'
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static')
-    ]
-    STATIC_ROOT = 'movie_app/static'
+
+    STATICFILES_DIRS = (
+        os.path.join(PROJECT_ROOT, 'static'),
+    )
+
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
     MEDIA_URL = '/images/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
@@ -133,14 +138,6 @@ class Configuration(Configuration):
      ('Aminat Ajagbe', 'contact@movierium.com'),
     ]
 
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
-class Develop(Configuration):
-    # development settings here...
-    DEBUG = True
-    ALLOWED_HOSTS = ['127.0.0.1']
-
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
@@ -151,6 +148,17 @@ class Develop(Configuration):
             'PORT': '',
         }
     }
+
+    # Heroku: Update database configuration from $DATABASE_URL.
+    import dj_database_url
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
+
+
+class Develop(Configuration):
+    # development settings here...
+    DEBUG = True
+    ALLOWED_HOSTS = ['127.0.0.1']
 
 
 class Production(Configuration):
@@ -163,14 +171,3 @@ class Production(Configuration):
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=False, cast=bool)
     SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', default=False, cast=bool)
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        }
-    }
-
-    # Heroku: Update database configuration from $DATABASE_URL.
-    import dj_database_url
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
