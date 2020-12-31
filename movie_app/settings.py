@@ -193,12 +193,12 @@ class Production(Configuration):
     # production settings here...
     DEBUG = config('DEBUG', default=False, cast=bool)
     ALLOWED_HOSTS = ['movierium.com']
-    SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', cast=bool)
-    SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', cast=bool)
-    CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', cast=bool)
+    SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=False, cast=bool)
+    SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=False, cast=bool)
+    CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=False, cast=bool)
     SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS')
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', cast=bool)
-    SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', cast=bool)
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=False, cast=bool)
+    SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', default=False, cast=bool)
 
     DATABASES = {
         'default': {
