@@ -104,13 +104,30 @@ class Configuration(Configuration):
     USE_L10N = True
 
     USE_TZ = True
+    #
+    # STATIC_URL = '/static/'
+    #
+    # STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+    #
+    # STATICFILES_DIRS = (
+    #     os.path.join(PROJECT_ROOT, 'static'),
+    # )
+
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+    STATIC_TMP = os.path.join(BASE_DIR, 'static')
 
     STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-    # STATICFILES_DIRS = (
-    #     os.path.join(BASE_DIR, 'static'),
-    # )
+    os.makedirs(STATIC_TMP, exist_ok=True)
+
+    os.makedirs(STATIC_ROOT, exist_ok=True)
+
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
 
     MEDIA_URL = '/images/'
 
@@ -155,8 +172,6 @@ class Configuration(Configuration):
         ('Aminat Ajagbe', 'contact@movierium.com'),
     ]
 
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 
 class Develop(Configuration):
     # development settings here...
@@ -169,21 +184,21 @@ class Develop(Configuration):
             'NAME': 'Movie_APP',
             'USER': 'root',
             'PASSWORD': 'root',
-            'HOST': 'localhost:8889',
+            'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',
         }
     }
 
 
 class Production(Configuration):
     # production settings here...
-    DEBUG = config('DEBUG', default=False, cast=bool)
+    DEBUG = config('DEBUG', cast=bool)
     ALLOWED_HOSTS = ['movierium.com']
-    SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=False, cast=bool)
-    SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE')
-    CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE')
+    SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', cast=bool)
+    SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', cast=bool)
+    CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', cast=bool)
     SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS')
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=False, cast=bool)
-    SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', default=False, cast=bool)
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', cast=bool)
+    SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', cast=bool)
 
     DATABASES = {
         'default': {
@@ -196,12 +211,9 @@ class Production(Configuration):
     }
 
     # Heroku: Update database configuration from $DATABASE_URL.
-    # import dj_database_url
-    # db_from_env = dj_database_url.config(conn_max_age=500)
-    # DATABASES['default'].update(db_from_env)
-
     import dj_database_url
-    DATABASES = {'default': dj_database_url.config(conn_max_age=500)}
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
 
 
 
