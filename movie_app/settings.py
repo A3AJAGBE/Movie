@@ -191,7 +191,7 @@ class Develop(Configuration):
 
 class Production(Configuration):
     # production settings here...
-    DEBUG = config('DEBUG', cast=bool)
+    DEBUG = config('DEBUG', default=False, cast=bool)
     ALLOWED_HOSTS = ['movierium.com']
     SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', cast=bool)
     SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', cast=bool)
