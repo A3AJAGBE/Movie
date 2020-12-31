@@ -23,9 +23,6 @@ class Configuration(Configuration):
     # BASE_DIR = Path(__file__).resolve().parent.parent
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    # Quick-start development settings - unsuitable for production
-    # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = os.environ.get('SECRET_KEY')
 
@@ -104,26 +101,8 @@ class Configuration(Configuration):
     USE_L10N = True
 
     USE_TZ = True
-    #
-    # STATIC_URL = '/static/'
-    #
-    # STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-    #
-    # STATICFILES_DIRS = (
-    #     os.path.join(PROJECT_ROOT, 'static'),
-    # )
-
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-    STATIC_TMP = os.path.join(BASE_DIR, 'static')
 
     STATIC_URL = '/static/'
-
-    os.makedirs(STATIC_TMP, exist_ok=True)
-
-    os.makedirs(STATIC_ROOT, exist_ok=True)
 
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
@@ -172,6 +151,8 @@ class Configuration(Configuration):
         ('Aminat Ajagbe', 'contact@movierium.com'),
     ]
 
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 class Develop(Configuration):
     # development settings here...
@@ -196,7 +177,7 @@ class Production(Configuration):
     SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=False, cast=bool)
     SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=False, cast=bool)
     CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=False, cast=bool)
-    SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS')
+    SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=False, cast=bool)
     SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', default=False, cast=bool)
 
@@ -215,6 +196,10 @@ class Production(Configuration):
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
 
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-
+    STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'staticfiles'))
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
 
