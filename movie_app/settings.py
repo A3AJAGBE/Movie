@@ -147,6 +147,13 @@ class Configuration(Configuration):
         }
     }
 
+    # Heroku: Update database configuration from $DATABASE_URL.
+    import dj_database_url
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
+
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 class Develop(Configuration):
     # development settings here...
@@ -165,20 +172,3 @@ class Production(Configuration):
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=False, cast=bool)
     SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', default=False, cast=bool)
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'Movie_APP',
-            'USER': 'root',
-            'PASSWORD': 'root',
-            'HOST': 'localhost:8889',
-        }
-    }
-
-    # Heroku: Update database configuration from $DATABASE_URL.
-    import dj_database_url
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
-
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
