@@ -24,22 +24,19 @@ class MovieAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('Title',)}
     list_filter = ('Genre', 'Uploaded_on')
     search_fields = ('Title',)
-    readonly_fields = ('Uploaded_on', 'Rating', 'slug')
+    readonly_fields = ('Uploaded_on', 'Rating')
 
 
 @admin.register(OrderItem)
 class OrderItemAdmin(admin.ModelAdmin):
     list_display = ('Customer', 'Movie', 'Quantity', 'Complete')
-    readonly_fields = ('Customer', 'Movie', 'Quantity', 'Complete')
 
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('Customer', 'get_movie', 'Date_Ordered', 'Order_Code', 'Complete', 'Payment', 'Coupon')
-    list_display_links = ('Customer', 'Coupon')
+    list_display = ('Customer', 'get_movie', 'Date_Ordered', 'Due', 'Complete', 'Payment', 'Coupon')
     search_fields = ('Customer', )
     list_filter = ('Payment', 'Complete')
-    readonly_fields = ('Customer', 'Movie', 'Date_Ordered', 'Order_Code', 'Complete', 'Payment', 'Coupon', 'Status', 'Due')
 
     fieldsets = (
         (None, {
@@ -66,7 +63,7 @@ class Coupon(admin.ModelAdmin):
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
     list_display = ('Email', 'Subject', 'Reply')
-    readonly_fields = ('Email', 'Subject', 'Message', 'Reply')
+    readonly_fields = ('Email', 'Subject', 'Message')
 
 # Customize Admin page
 

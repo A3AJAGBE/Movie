@@ -12,18 +12,89 @@
 
 <div class="container top">
     <h1 class="mb-3"> Your rent history: {{ num_rent }} </h1>
-
-      <ul>
-        {% for book in order%}
-          <li>
-            <a href="{{ book.Movie.get_absolute_url }}">{{ book.Movie }}</a> ({{book.Movie.Summary}})
-          </li>
+    <div class="row">
+            {% for movie in order.all %}
+            <div class="col-lg-6">
+                <div class="card-deck">
+                    <div class="card mb-3">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <a href="{{ movie.Movie.get_absolute_url }}">
+                                    <img src="{{ movie.Movie.Image.url }}" class="card-img h-100" alt="{{ movie.Movie.Title }} Poster">
+                                </a>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h3 class="card-title text-dark">{{ movie.Movie.Title | title}}</h3>
+                                    <h5 class="card-text text-dark">{{ movie.Movie.Summary | slice:":70" }}...</h5>
+                                    <p><strong class="text-warning">Rating: {{ movie.Movie.Rating }}</strong></p>
+                                    <small class="text-muted">{{ movie.Movie.Uploaded_on.date }} |
+                                        <strong>Genre:</strong>
+                                        {% for genre in movie.Movie.Genre.all %}
+                                        <a href="{% url 'genre' genre.Name %}">{{ genre.Name }}</a>&nbsp;
+                                        {% endfor %}
+                                    </small>
+                                    {% if not movie.is_overdue %}
+                                    <a class="btn btn-primary btn-lg mt-3" href="{{ movie.Movie.Link }}" role="button"><i class="fas fa-play"></i> Start streaming</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            {% if movie.is_overdue %}
+                            <div class="alert alert-danger" role="alert">
+                                Access expired on {{ movie.Due }}
+                            </div>
+                            {% else %}
+                            <div class="alert alert-warning" role="alert">
+                                Accessible until {{ movie.Due }}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
           {% empty %}
             <p>No rent history</p>
         {% endfor %}
-      </ul>
-
+    </div>
 </div>
+
+<!-- Pagination Section -->
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            {% if page_obj.has_previous %}
+            <a class="page-link" href="?page=1">&laquo; First</a>
+            {% endif %}
+        </li>
+
+        <li class="page-item">
+            {% if page_obj.has_previous %}
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+        </li>
+
+        <li class="page-item active" aria-current="page">
+            <a class="page-link">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                <span class="sr-only">(current)</span>
+            </a>
+        </li>
+
+        <li class="page-item">
+            {% if page_obj.has_next %}
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+            {% endif %}
+        </li>
+
+        <li class="page-item">
+            {% if page_obj.has_next %}
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+            {% endif %}
+        </li>
+    </ul>
+</nav>
 
 {% endblock %}
 

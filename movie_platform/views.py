@@ -26,7 +26,7 @@ def index(request):
 def movie(request):
     """View for movie page."""
     movies = Movie.objects.all().order_by('-Uploaded_on')
-    num_movies = Movie.objects.count()
+    num_movies = movies.count()
     paginator = Paginator(movies, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -110,6 +110,26 @@ def cart(request):
     except ObjectDoesNotExist:
         messages.warning(request, 'The shopping bag is empty')
         return redirect('movie')
+
+
+@login_required
+def history(request):
+    """View for dashboard"""
+    try:
+        order = OrderItem.objects.filter(Customer=request.user, Complete=True)
+        num_rent = order.count()
+        paginator = Paginator(order, 6)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {
+            'order': order,
+            'num_rent': num_rent,
+            'page_obj': page_obj,
+        }
+        return render(request, 'dashboard.html', context)
+    except ObjectDoesNotExist:
+        messages.warning(request, 'No rent history')
+        return redirect('dashboard')
 
 
 @login_required()
@@ -201,7 +221,7 @@ def payment(request):
             order.save()
 
             messages.success(request, "Payment processed successfully")
-            return redirect('index')
+            return redirect('dashboard')
         except stripe.error.CardError as e:
             # Since it's a decline, stripe.error.CardError will be caught
             body = e.json_body
@@ -227,7 +247,6 @@ def payment(request):
             return redirect('payment')
         except stripe.error.StripeError:
             # Display a very generic error to the user, and maybe send
-            # yourself an email
             messages.warning(request, "Something went wrong, Payment processing failed. Kindly, try again")
             return redirect('payment')
 
@@ -274,16 +293,3 @@ def add_coupon(request):
         else:
             messages.warning(request, "Invalid Code")
             return redirect('payment')
-
-
-@login_required
-def dashboard(request):
-    """View for dashboard"""
-    order = Order.objects.filter(Customer=request.user, Complete=True, Payment=True)
-    num_rent = order.count()
-    context = {
-        'order': order,
-        'num_rent': num_rent
-    }
-    return render(request, 'dashboard.html', context)
-
