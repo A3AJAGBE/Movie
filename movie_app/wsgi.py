@@ -12,7 +12,7 @@ from configurations.wsgi import get_wsgi_application
 from dotenv import load_dotenv
 load_dotenv()
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', os.environ.get('DJANGO_SETTINGS_MODULE'))
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'movie_app.settings')
 os.environ.setdefault('DJANGO_CONFIGURATION', os.environ.get('DJANGO_CONFIGURATION'))
 
 application = get_wsgi_application()
