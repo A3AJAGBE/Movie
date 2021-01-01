@@ -9,10 +9,8 @@ https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/
 
 import os
 from configurations.wsgi import get_wsgi_application
-from dotenv import load_dotenv
-load_dotenv()
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'movie_app.settings')
-os.environ.setdefault('DJANGO_CONFIGURATION', os.environ.get('DJANGO_CONFIGURATION'))
+os.environ.setdefault('DJANGO_CONFIGURATION', 'Production')
 
 application = get_wsgi_application()
