@@ -24,7 +24,7 @@ class MovieAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('Title',)}
     list_filter = ('Genre', 'Uploaded_on')
     search_fields = ('Title',)
-    readonly_fields = ('Uploaded_on', 'Rating')
+    readonly_fields = ('Uploaded_on',)
 
 
 @admin.register(OrderItem)
