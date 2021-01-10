@@ -57,7 +57,6 @@ class PaymentAdmin(admin.ModelAdmin):
 @admin.register(Coupon)
 class Coupon(admin.ModelAdmin):
     list_display = ('Code', 'Amount')
-    readonly_fields = ('Code', 'Amount')
 
 
 @admin.register(Contact)
