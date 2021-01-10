@@ -13,4 +13,5 @@ urlpatterns = [
     path('add_coupon/', views.add_coupon, name='add_coupon'),
     path('cart/', views.cart, name='cart'),
     path('payment/', views.payment, name='payment'),
+    path('user_messages/', views.queries, name='user_messages'),
 ]
