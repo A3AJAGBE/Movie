@@ -116,7 +116,7 @@ def cart(request):
 def history(request):
     """View for dashboard"""
     try:
-        order = Order.objects.filter(Customer=request.user, Complete=True)
+        order = OrderItem.objects.filter(Customer=request.user, Complete=True)
         num_rent = order.count()
         paginator = Paginator(order, 6)
         page_number = request.GET.get('page')
@@ -129,7 +129,7 @@ def history(request):
         return render(request, 'dashboard.html', context)
     except ObjectDoesNotExist:
         messages.warning(request, 'No rent history')
-        return redirect('dashboard')
+        return redirect('movie')
 
 
 @login_required()
@@ -152,8 +152,7 @@ def add_to_cart(request, slug):
             messages.success(request, f'"{m}" added to the shopping bag.')
             return redirect('cart')
     else:
-        Date = timezone.now()
-        order = Order.objects.create(Customer=request.user, Date_Ordered=Date)
+        order = Order.objects.create(Customer=request.user)
         order.Movie.add(order_item)
         messages.success(request, f'"{m}" added to the shopping bag.')
         return redirect('cart')
@@ -209,15 +208,17 @@ def payment(request):
             pay.save()
 
             # Assign payment to order
+            Date = timezone.now()
             order_items = order.Movie.all()
             order_items.update(Complete=True)
+            order_items.update(Due=timezone.now() + timedelta(hours=3))
+            order_items.update(Date_Ordered=Date)
             for item in order_items:
                 item.save
 
             order.Complete = True
             order.Payment = True
             order.Order_Code = shortuuid.ShortUUID().random(length=20)
-            order.Due = timezone.now() + timedelta(hours=3)
             order.save()
 
             messages.success(request, "Payment processed successfully")
@@ -295,6 +296,7 @@ def add_coupon(request):
             return redirect('payment')
 
 
+@login_required
 def queries(request):
     """View for message page."""
     m_query = Contact.objects.all()
