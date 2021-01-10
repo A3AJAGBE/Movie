@@ -97,6 +97,9 @@ class Configuration(Configuration):
     STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
     STATIC_URL = '/static/'
 
+    MEDIA_URL = '/images/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
     STATICFILES_DIRS = (
         os.path.join(PROJECT_ROOT, 'static'),
     )
@@ -158,10 +161,6 @@ class Develop(Configuration):
     DEBUG = True
     ALLOWED_HOSTS = ['127.0.0.1']
 
-    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    MEDIA_URL = '/images/'
-    MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'static/images')
-
 
 class Production(Configuration):
     # production settings here...
@@ -173,7 +172,3 @@ class Production(Configuration):
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=False, cast=bool)
     SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', default=False, cast=bool)
-
-    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    MEDIA_URL = '/images/'
-    MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles/images')
