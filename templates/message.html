@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Contact Us | {{ block.super }} {% endblock %}
+{% block content %}
+
+<div class="container top">
+    <h1 class="text-center">Message sent by the users</h1>
+
+    {% for q in m_query %}
+    <div class="d-flex align-items-start flex-column bg-light text-dark mb-3">
+      <div class="p-2">Subject: {{q.Subject}}</div>
+      <div class="p-2">Email: {{q.Email}}</div>
+      <div class="p-2 text-primary">{{q.Message}}</div>
+        {% if q.Reply %}
+            <div class="p-2 text-success">Reply sent</div>
+        {% else %}
+            <div class="p-2">
+                <a class="btn btn-danger btn-lg" href="mailto:{{q.Email}}?subject=Responding to: {{q.Subject}}" role="button">Send a reply</a>
+            </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
