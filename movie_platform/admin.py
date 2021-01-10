@@ -29,21 +29,32 @@ class MovieAdmin(admin.ModelAdmin):
 
 @admin.register(OrderItem)
 class OrderItemAdmin(admin.ModelAdmin):
-    list_display = ('Customer', 'Movie', 'Quantity', 'Complete')
+    list_display = ('Customer', 'Movie', 'Quantity', 'Complete', 'Date_Ordered', 'Due')
+    readonly_fields = ('Movie', 'Customer', 'Complete', 'Status', 'Due')
+
+    fieldsets = (
+        (None, {
+            'fields': ('Movie', 'Customer')
+        }),
+        ('Validity', {
+            'fields': ('Complete', 'Status', 'Due')
+        }),
+    )
 
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('Customer', 'get_movie', 'Date_Ordered', 'Due', 'Complete', 'Payment', 'Coupon')
+    list_display = ('Customer', 'get_movie', 'Complete', 'Payment', 'Coupon')
     search_fields = ('Customer', )
     list_filter = ('Payment', 'Complete')
+    readonly_fields = ('Movie', 'Order_Code', 'Coupon', 'Customer', 'Complete', 'Payment')
 
     fieldsets = (
         (None, {
             'fields': ('Movie', 'Order_Code', 'Coupon')
         }),
         ('Validity', {
-            'fields': ('Customer', 'Complete', 'Payment', 'Status', 'Due')
+            'fields': ('Customer', 'Complete', 'Payment')
         }),
     )
 
