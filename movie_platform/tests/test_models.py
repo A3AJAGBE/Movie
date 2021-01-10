@@ -1,9 +1,7 @@
 from django.test import TestCase
-from django.urls import reverse, resolve
+from django.urls import reverse
 
-from movie_platform.models import Genre
-
-from movie_platform.views import genre
+from movie_platform.models import Genre, Coupon
 
 
 class GenreModelTest(TestCase):
@@ -26,3 +24,21 @@ class GenreModelTest(TestCase):
         url = reverse('genre', kwargs={'genre': 'Romance'})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
+
+
+class CouponModelTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        # Set up non-modified objects used by all test methods
+        Coupon.objects.create(Code='REGULAR', Amount=1.50)
+
+    def test_code_label(self):
+        discount = Coupon.objects.get(id=1)
+        field_label = discount._meta.get_field('Code').verbose_name
+        self.assertEqual(field_label, 'Code')
+
+    def test_code_max_length(self):
+        discount = Coupon.objects.get(id=1)
+        max_length = discount._meta.get_field('Code').max_length
+        self.assertEqual(max_length, 15)
+
