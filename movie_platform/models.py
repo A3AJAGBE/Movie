@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from django.urls import reverse
+from django.utils import timezone
 
 
 class Genre(models.Model):
@@ -61,12 +62,21 @@ class Movie(models.Model):
         return reverse('remove_from_cart', kwargs={'slug': self.slug})
 
 
+STATUS = (
+    ('V', 'Valid'),
+    ('In', 'Invalid')
+)
+
+
 class OrderItem(models.Model):
     """This model is for order item."""
     Customer = models.ForeignKey(User, on_delete=models.CASCADE)
     Movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     Quantity = models.IntegerField(default=1)
     Complete = models.BooleanField(default=False)
+    Date_Ordered = models.DateTimeField(null=True)
+    Due = models.DateTimeField(null=True, blank=True)
+    Status = models.CharField(choices=STATUS, max_length=2, default='V')
 
     def __str__(self):
         """String for representing the Model objects."""
@@ -86,11 +96,15 @@ class OrderItem(models.Model):
             return self.get_movie_discount_price()
         return self.get_total_movie_price()
 
-
-STATUS = (
-    ('V', 'Valid'),
-    ('In', 'Invalid')
-)
+    @property
+    def is_overdue(self):
+        current_time = timezone.now()
+        due_time = self.Due
+        if current_time > due_time:
+            self.Status = 'In'
+            self.save()
+            return True
+        return False
 
 
 class Order(models.Model):
@@ -98,12 +112,9 @@ class Order(models.Model):
     Customer = models.ForeignKey(User, on_delete=models.CASCADE)
     Order_Code = models.CharField(max_length=20, blank=True, null=True)
     Movie = models.ManyToManyField(OrderItem)
-    Date_Ordered = models.DateTimeField()
     Complete = models.BooleanField(default=False)
     Payment = models.BooleanField(default=False)
     Coupon = models.ForeignKey('Coupon', on_delete=models.SET_NULL, blank=True, null=True)
-    Due = models.DateTimeField(null=True, blank=True)
-    Status = models.CharField(choices=STATUS, max_length=2, default='V')
 
     def __str__(self):
         """String for representing the Model objects."""
@@ -122,16 +133,6 @@ class Order(models.Model):
         if self.Coupon:
             total -= self.Coupon.Amount
         return total
-
-    @property
-    def is_overdue(self):
-        order_time = self.Date_Ordered
-        due_time = self.Due
-        if due_time and order_time > due_time:
-            self.Status = 'In'
-            self.save()
-            return True
-        return False
 
 
 class Payment(models.Model):
