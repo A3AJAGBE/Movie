@@ -116,7 +116,7 @@ def cart(request):
 def history(request):
     """View for dashboard"""
     try:
-        order = OrderItem.objects.filter(Customer=request.user, Complete=True)
+        order = OrderItem.objects.filter(Customer=request.user, Complete=True).order_by('-Due')
         num_rent = order.count()
         paginator = Paginator(order, 6)
         page_number = request.GET.get('page')
