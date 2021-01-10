@@ -116,7 +116,7 @@ def cart(request):
 def history(request):
     """View for dashboard"""
     try:
-        order = OrderItem.objects.filter(Customer=request.user, Complete=True)
+        order = Order.objects.filter(Customer=request.user, Complete=True)
         num_rent = order.count()
         paginator = Paginator(order, 6)
         page_number = request.GET.get('page')
@@ -293,3 +293,10 @@ def add_coupon(request):
         else:
             messages.warning(request, "Invalid Code")
             return redirect('payment')
+
+
+def queries(request):
+    """View for message page."""
+    m_query = Contact.objects.all()
+    context = {"m_query": m_query}
+    return render(request, 'message.html', context)
