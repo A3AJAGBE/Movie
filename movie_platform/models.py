@@ -74,7 +74,7 @@ class OrderItem(models.Model):
     Movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     Quantity = models.IntegerField(default=1)
     Complete = models.BooleanField(default=False)
-    Date_Ordered = models.DateTimeField(null=True)
+    Date_Ordered = models.DateTimeField(null=True, blank=True)
     Due = models.DateTimeField(null=True, blank=True)
     Status = models.CharField(choices=STATUS, max_length=2, default='V')
 
