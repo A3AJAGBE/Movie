@@ -1,1 +1,293 @@
-[{"model": "movie_platform.genre", "pk": 1, "fields": {"Name": "Action"}}, {"model": "movie_platform.genre", "pk": 2, "fields": {"Name": "Sci-Fi"}}, {"model": "movie_platform.genre", "pk": 3, "fields": {"Name": "Romance"}}, {"model": "movie_platform.genre", "pk": 4, "fields": {"Name": "Thriller"}}, {"model": "movie_platform.genre", "pk": 5, "fields": {"Name": "Comedy"}}, {"model": "movie_platform.genre", "pk": 6, "fields": {"Name": "Crime"}}, {"model": "movie_platform.genre", "pk": 7, "fields": {"Name": "Horror"}}, {"model": "movie_platform.movie", "pk": 1, "fields": {"Title": "Enemy Of Our Culture", "Summary": "This is a political story with an emphasis on the dangers of self-expression. The story is about a negative archer who hates a terrorist. It takes place in a warehouse. The story begins with someone getting a new job and ends with someone building a dwelling.", "Image": "posters/1.png", "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4", "Price": "8.00", "Discount": null, "Rating": "PG", "Uploaded_on": "2020-12-28T02:04:49.677Z", "slug": "Enemy-Of-Our-Culture", "Genre": [1, 6]}}, {"model": "movie_platform.movie", "pk": 2, "fields": {"Title": "Inspired By Electricity", "Summary": "This is a romantic comedy. The story is about an anthropologist who possesses a strange map. It starts in a small city. The story begins with a pleasant surprise, climaxes with research being done, and ends with a birthday celebration.", "Image": "posters/2.png", "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4", "Price": "7.50", "Discount": null, "Rating": "G", "Uploaded_on": "2020-12-28T02:05:26.522Z", "slug": "Inspired-By-Electricity", "Genre": [3, 5]}}, {"model": "movie_platform.movie", "pk": 3, "fields": {"Title": "Ladylove Of The Mountains", "Summary": "The story is about a comic who is in debt to a distant midwife. It starts in a city-state in a world where magic is part of everyday life. The generation gap plays a major part in this story.", "Image": "posters/3.png", "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4", "Price": "8.50", "Discount": "7.50", "Rating": "NC-17", "Uploaded_on": "2020-12-28T02:06:14.540Z", "slug": "Ladylove-Of-The-Mountains", "Genre": [5]}}, {"model": "movie_platform.movie", "pk": 4, "fields": {"Title": "Roommates And Secret Admirers", "Summary": "This is a tale about realism and how destructive religion can be. The story is about a principled conjurer who hates a gentle circuit priestess. It starts in a city-state on a frozen world artificially created by magic. The story begins with an apocalyptic event and ends with someone reading a diary. Holding off the end of the world is an important part of the story.", "Image": "posters/4.png", "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4", "Price": "8.00", "Discount": null, "Rating": "PG", "Uploaded_on": "2020-12-28T02:06:53.824Z", "slug": "Roommates-And-Secret-Admirers", "Genre": [1, 2]}}, {"model": "movie_platform.movie", "pk": 5, "fields": {"Title": "Boy With Red Hair", "Summary": "This is a story about man's need for freedom. The story is about a noble. It starts in a software company in a town. The creation of artificial life plays a major role in this story.", "Image": "posters/5.png", "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4", "Price": "7.00", "Discount": null, "Rating": "G", "Uploaded_on": "2020-12-28T02:07:33.895Z", "slug": "Boy-With-Red-Hair", "Genre": [3]}}, {"model": "movie_platform.movie", "pk": 6, "fields": {"Title": "Cuddling", "Summary": "This is an on-the-run story. The story is about a confident cleric, a dancer, a newscaster, and an astronomer. It starts in an ancient commonwealth. The story begins with a revelation and ends with a party. The fallout from World War II plays a major role in this story.", "Image": "posters/6.png", "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4", "Price": "6.80", "Discount": null, "Rating": "NC-17", "Uploaded_on": "2020-12-28T02:08:26.699Z", "slug": "Cuddling", "Genre": [7]}}, {"model": "movie_platform.movie", "pk": 7, "fields": {"Title": "Crow In My Dreams", "Summary": "This is an epic about depression. The story is about a barbarian who is dependent on medication. It starts in a grocery store in a port city. The crux of the story involves someone getting drunk. The role of technology in the modern world plays a major part in the story.", "Image": "posters/7.png", "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4", "Price": "8.00", "Discount": null, "Rating": "PG-13", "Uploaded_on": "2020-12-28T02:09:10.752Z", "slug": "Crow-In-My-Dreams", "Genre": [4, 5]}}, {"model": "movie_platform.movie", "pk": 8, "fields": {"Title": "Ghosts In The Fog", "Summary": "The story is about a hacker. It takes place in a military outpost. The crux of the story involves a murder. Archaeology versus respecting native cultures plays a major role in this story.", "Image": "posters/8.png", "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4", "Price": "9.00", "Discount": null, "Rating": "PG-13", "Uploaded_on": "2020-12-28T02:10:15.853Z", "slug": "Ghosts-In-The-Fog", "Genre": [4, 7]}}, {"model": "movie_platform.movie", "pk": 9, "fields": {"Title": "Prize Of Hell", "Summary": "This is a tale about friendship and how one man can make a difference. The story is about an eccentric teacher who is constantly annoyed by an investor. It takes place in a crypt. A magical accident plays an important role.", "Image": "posters/9.png", "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4", "Price": "7.90", "Discount": null, "Rating": "R", "Uploaded_on": "2020-12-28T02:11:49.281Z", "slug": "Prize-Of-Hell", "Genre": [2, 6]}}, {"model": "movie_platform.movie", "pk": 10, "fields": {"Title": "Age In My Sins", "Summary": "The story is about a librarian who is constantly opposing a bullying video game programmer. It takes place in a town in Africa. Technology getting out of hand is a major issue of the story.", "Image": "posters/10.png", "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4", "Price": "8.50", "Discount": null, "Rating": "PG-13", "Uploaded_on": "2020-12-28T02:12:34.683Z", "slug": "Age-In-My-Sins", "Genre": [1, 4]}}, {"model": "movie_platform.movie", "pk": 11, "fields": {"Title": "Celebrate My Life", "Summary": "This is a drama/horror with an emphasis on taking control of one's life. The story is about an arch-mage who hates a focused midwife. It takes place in a marketplace in a colony. International crime plays a major role in this story.", "Image": "posters/11.png", "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4", "Price": "8.00", "Discount": null, "Rating": "NC-17", "Uploaded_on": "2020-12-28T02:59:20.994Z", "slug": "Celebrate-My-Life", "Genre": [7]}}, {"model": "movie_platform.movie", "pk": 12, "fields": {"Title": "Women And Women", "Summary": "Young, available and good-looking, an unlikely relationship starts to blossom for the main character when they are introduced to a charming stranger. Soon becoming smitten with the love interest, the main character gives up on the idea of love when another person with much better chances than the main character shows up and results in animosity among the all those involved, and some who aren't.", "Image": "posters/12.png", "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4", "Price": "8.50", "Discount": null, "Rating": "R", "Uploaded_on": "2020-12-28T10:29:59.033Z", "slug": "women-and-women", "Genre": [3, 5]}}, {"model": "movie_platform.movie", "pk": 13, "fields": {"Title": "Boys And Martians", "Summary": "Just when things were starting to look great, the main character is forced into action when a long lost love returns, asking them for a favour; it requires them to give up their current lifestyle. Driven by fear, the main character, with the help of their loved ones, manages to escape from captivity and flee to a safe haven.", "Image": "posters/13.png", "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4", "Price": "9.00", "Discount": "1.50", "Rating": "G", "Uploaded_on": "2021-01-10T13:01:25.479Z", "slug": "boys-and-martians", "Genre": [2]}}, {"model": "movie_platform.orderitem", "pk": 23, "fields": {"Customer": 1, "Movie": 7, "Quantity": 1, "Complete": true}}, {"model": "movie_platform.orderitem", "pk": 24, "fields": {"Customer": 1, "Movie": 8, "Quantity": 1, "Complete": true}}, {"model": "movie_platform.orderitem", "pk": 26, "fields": {"Customer": 1, "Movie": 10, "Quantity": 1, "Complete": true}}, {"model": "movie_platform.orderitem", "pk": 27, "fields": {"Customer": 1, "Movie": 4, "Quantity": 1, "Complete": true}}, {"model": "movie_platform.orderitem", "pk": 28, "fields": {"Customer": 1, "Movie": 6, "Quantity": 1, "Complete": true}}, {"model": "movie_platform.orderitem", "pk": 29, "fields": {"Customer": 1, "Movie": 2, "Quantity": 1, "Complete": false}}, {"model": "movie_platform.orderitem", "pk": 30, "fields": {"Customer": 1, "Movie": 2, "Quantity": 1, "Complete": true}}, {"model": "movie_platform.orderitem", "pk": 34, "fields": {"Customer": 1, "Movie": 10, "Quantity": 1, "Complete": true}}, {"model": "movie_platform.orderitem", "pk": 35, "fields": {"Customer": 1, "Movie": 11, "Quantity": 1, "Complete": true}}, {"model": "movie_platform.orderitem", "pk": 37, "fields": {"Customer": 1, "Movie": 11, "Quantity": 1, "Complete": true}}, {"model": "movie_platform.orderitem", "pk": 38, "fields": {"Customer": 1, "Movie": 12, "Quantity": 1, "Complete": true}}, {"model": "movie_platform.order", "pk": 7, "fields": {"Customer": 1, "Order_Code": null, "Date_Ordered": "2020-12-30T02:42:35.983Z", "Complete": true, "Payment": true, "Coupon": null, "Due": "2020-12-30T05:53:15.256Z", "Status": "V", "Movie": [23]}}, {"model": "movie_platform.order", "pk": 8, "fields": {"Customer": 1, "Order_Code": null, "Date_Ordered": "2020-12-30T03:17:46.462Z", "Complete": true, "Payment": true, "Coupon": 1, "Due": "2020-12-30T05:53:15.256Z", "Status": "V", "Movie": [24]}}, {"model": "movie_platform.order", "pk": 9, "fields": {"Customer": 1, "Order_Code": null, "Date_Ordered": "2020-12-30T04:50:37.586Z", "Complete": true, "Payment": true, "Coupon": null, "Due": "2020-12-30T05:53:15.256Z", "Status": "V", "Movie": [26]}}, {"model": "movie_platform.order", "pk": 10, "fields": {"Customer": 1, "Order_Code": null, "Date_Ordered": "2020-12-30T05:09:22.889Z", "Complete": true, "Payment": true, "Coupon": null, "Due": "2020-12-30T05:53:15.256Z", "Status": "V", "Movie": [27]}}, {"model": "movie_platform.order", "pk": 11, "fields": {"Customer": 1, "Order_Code": "3TQELNV2tuKeE3iNRQ4B", "Date_Ordered": "2020-12-30T05:24:06.283Z", "Complete": true, "Payment": true, "Coupon": null, "Due": "2020-12-30T05:53:15.256Z", "Status": "V", "Movie": [28]}}, {"model": "movie_platform.order", "pk": 12, "fields": {"Customer": 1, "Order_Code": "3CyKDESZyiuHbDBWZWA6", "Date_Ordered": "2020-12-30T05:57:46.893Z", "Complete": true, "Payment": true, "Coupon": null, "Due": "2020-12-30T08:58:18.303Z", "Status": "V", "Movie": [30]}}, {"model": "movie_platform.order", "pk": 13, "fields": {"Customer": 1, "Order_Code": "3uFnSh6UpQFZJvtqbUAC", "Date_Ordered": "2020-12-30T08:30:02.429Z", "Complete": true, "Payment": true, "Coupon": 1, "Due": "2020-12-31T00:57:33.415Z", "Status": "V", "Movie": [34]}}, {"model": "movie_platform.order", "pk": 14, "fields": {"Customer": 1, "Order_Code": "6BKX4LgyTVVa34CNiq3m", "Date_Ordered": "2020-12-30T22:26:44.406Z", "Complete": true, "Payment": true, "Coupon": null, "Due": "2020-12-31T03:16:00.857Z", "Status": "V", "Movie": [35]}}, {"model": "movie_platform.order", "pk": 15, "fields": {"Customer": 1, "Order_Code": "3NwSjMKnq6DtYHBaSWQf", "Date_Ordered": "2020-12-31T19:40:49.194Z", "Complete": true, "Payment": true, "Coupon": 1, "Due": "2021-01-08T21:59:26.555Z", "Status": "V", "Movie": [37, 38]}}, {"model": "movie_platform.order", "pk": 16, "fields": {"Customer": 2, "Order_Code": null, "Date_Ordered": "2021-01-09T20:16:07.684Z", "Complete": false, "Payment": false, "Coupon": null, "Due": null, "Status": "V", "Movie": []}}, {"model": "movie_platform.order", "pk": 17, "fields": {"Customer": 1, "Order_Code": null, "Date_Ordered": "2021-01-09T20:59:53.708Z", "Complete": false, "Payment": false, "Coupon": null, "Due": null, "Status": "V", "Movie": []}}, {"model": "movie_platform.payment", "pk": 1, "fields": {"Stripe_Charge_ID": "ch_1I3mqdCD5Q30qH8lGeU5ragg", "Customer": 1, "Amount": "16.00", "Timestamp": "2020-12-29T18:23:08.412Z"}}, {"model": "movie_platform.payment", "pk": 2, "fields": {"Stripe_Charge_ID": "ch_1I3uh1CD5Q30qH8lqVoIphGF", "Customer": 1, "Amount": "8.00", "Timestamp": "2020-12-30T02:45:43.714Z"}}, {"model": "movie_platform.payment", "pk": 3, "fields": {"Stripe_Charge_ID": "ch_1I3wamCD5Q30qH8lO6t4nbDW", "Customer": 1, "Amount": "4.00", "Timestamp": "2020-12-30T04:47:25.337Z"}}, {"model": "movie_platform.payment", "pk": 4, "fields": {"Stripe_Charge_ID": "ch_1I3whACD5Q30qH8ln3FjA3ZO", "Customer": 1, "Amount": "8.50", "Timestamp": "2020-12-30T04:54:00.849Z"}}, {"model": "movie_platform.payment", "pk": 5, "fields": {"Stripe_Charge_ID": "ch_1I3wwGCD5Q30qH8lN0NVz1jf", "Customer": 1, "Amount": "8.00", "Timestamp": "2020-12-30T05:09:37.294Z"}}, {"model": "movie_platform.payment", "pk": 6, "fields": {"Stripe_Charge_ID": "ch_1I3wzSCD5Q30qH8lt7QP12QQ", "Customer": 1, "Amount": "8.00", "Timestamp": "2020-12-30T05:12:54.682Z"}}, {"model": "movie_platform.payment", "pk": 7, "fields": {"Stripe_Charge_ID": "ch_1I3x3zCD5Q30qH8leSutUoAX", "Customer": 1, "Amount": "8.00", "Timestamp": "2020-12-30T05:17:35.806Z"}}, {"model": "movie_platform.payment", "pk": 8, "fields": {"Stripe_Charge_ID": "ch_1I3x5OCD5Q30qH8l3d72sAqM", "Customer": 1, "Amount": "8.00", "Timestamp": "2020-12-30T05:19:02.948Z"}}, {"model": "movie_platform.payment", "pk": 9, "fields": {"Stripe_Charge_ID": "ch_1I3xAaCD5Q30qH8lf13sCf13", "Customer": 1, "Amount": "6.80", "Timestamp": "2020-12-30T05:24:25.135Z"}}, {"model": "movie_platform.payment", "pk": 10, "fields": {"Stripe_Charge_ID": "ch_1I3xhNCD5Q30qH8lZGchSAMZ", "Customer": 1, "Amount": "7.50", "Timestamp": "2020-12-30T05:58:18.297Z"}}, {"model": "movie_platform.payment", "pk": 11, "fields": {"Stripe_Charge_ID": "ch_1I4CfgCD5Q30qH8lK2OUeMkn", "Customer": 1, "Amount": "3.50", "Timestamp": "2020-12-30T21:57:33.403Z"}}, {"model": "movie_platform.payment", "pk": 12, "fields": {"Stripe_Charge_ID": "ch_1I4EpgCD5Q30qH8lpCgE6rtV", "Customer": 1, "Amount": "8.00", "Timestamp": "2020-12-31T00:16:00.841Z"}}, {"model": "movie_platform.payment", "pk": 13, "fields": {"Stripe_Charge_ID": "ch_1I7QBFCD5Q30qH8lQjFti1Jk", "Customer": 1, "Amount": "11.50", "Timestamp": "2021-01-08T18:59:26.547Z"}}, {"model": "movie_platform.coupon", "pk": 1, "fields": {"Code": "FIRST_TIME_USER", "Amount": "5.00"}}, {"model": "movie_platform.contact", "pk": 1, "fields": {"Email": "a3ajagbe@gmail.com", "Subject": "Enquiries", "Message": "Greeting", "Reply": true}}, {"model": "movie_platform.contact", "pk": 2, "fields": {"Email": "Texta3ajagbe@gmail.com", "Subject": "Enquiries on registration", "Message": "Hello from afar!!!", "Reply": true}}, {"model": "movie_platform.review", "pk": 1, "fields": {"Author": 1, "Review": "Awesome movie", "Posted": "2020-12-30T14:36:49.582Z", "Movie": 10}}, {"model": "movie_platform.review", "pk": 2, "fields": {"Author": 1, "Review": "Wow", "Posted": "2020-12-30T14:48:17.992Z", "Movie": 10}}]
+[
+{
+  "model": "movie_platform.genre",
+  "pk": 1,
+  "fields": {
+    "Name": "Action"
+  }
+},
+{
+  "model": "movie_platform.genre",
+  "pk": 2,
+  "fields": {
+    "Name": "Sci-Fi"
+  }
+},
+{
+  "model": "movie_platform.genre",
+  "pk": 3,
+  "fields": {
+    "Name": "Romance"
+  }
+},
+{
+  "model": "movie_platform.genre",
+  "pk": 4,
+  "fields": {
+    "Name": "Thriller"
+  }
+},
+{
+  "model": "movie_platform.genre",
+  "pk": 5,
+  "fields": {
+    "Name": "Comedy"
+  }
+},
+{
+  "model": "movie_platform.genre",
+  "pk": 6,
+  "fields": {
+    "Name": "Crime"
+  }
+},
+{
+  "model": "movie_platform.genre",
+  "pk": 7,
+  "fields": {
+    "Name": "Horror"
+  }
+},
+{
+  "model": "movie_platform.movie",
+  "pk": 1,
+  "fields": {
+    "Title": "Enemy Of Our Culture",
+    "Summary": "This is a political story with an emphasis on the dangers of self-expression. The story is about a negative archer who hates a terrorist. It takes place in a warehouse. The story begins with someone getting a new job and ends with someone building a dwelling.",
+    "Image": "posters/1.png",
+    "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4",
+    "Price": "8.00",
+    "Discount": null,
+    "Rating": "PG",
+    "Uploaded_on": "2020-12-28T02:04:49.677Z",
+    "slug": "Enemy-Of-Our-Culture",
+    "Genre": [
+      1,
+      6
+    ]
+  }
+},
+{
+  "model": "movie_platform.movie",
+  "pk": 2,
+  "fields": {
+    "Title": "Inspired By Electricity",
+    "Summary": "This is a romantic comedy. The story is about an anthropologist who possesses a strange map. It starts in a small city. The story begins with a pleasant surprise, climaxes with research being done, and ends with a birthday celebration.",
+    "Image": "posters/2.png",
+    "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4",
+    "Price": "7.50",
+    "Discount": null,
+    "Rating": "G",
+    "Uploaded_on": "2020-12-28T02:05:26.522Z",
+    "slug": "Inspired-By-Electricity",
+    "Genre": [
+      3,
+      5
+    ]
+  }
+},
+{
+  "model": "movie_platform.movie",
+  "pk": 3,
+  "fields": {
+    "Title": "Ladylove Of The Mountains",
+    "Summary": "The story is about a comic who is in debt to a distant midwife. It starts in a city-state in a world where magic is part of everyday life. The generation gap plays a major part in this story.",
+    "Image": "posters/3.png",
+    "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4",
+    "Price": "8.50",
+    "Discount": "7.50",
+    "Rating": "NC-17",
+    "Uploaded_on": "2020-12-28T02:06:14.540Z",
+    "slug": "Ladylove-Of-The-Mountains",
+    "Genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "movie_platform.movie",
+  "pk": 4,
+  "fields": {
+    "Title": "Roommates And Secret Admirers",
+    "Summary": "This is a tale about realism and how destructive religion can be. The story is about a principled conjurer who hates a gentle circuit priestess. It starts in a city-state on a frozen world artificially created by magic. The story begins with an apocalyptic event and ends with someone reading a diary. Holding off the end of the world is an important part of the story.",
+    "Image": "posters/4.png",
+    "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4",
+    "Price": "8.00",
+    "Discount": null,
+    "Rating": "PG",
+    "Uploaded_on": "2020-12-28T02:06:53.824Z",
+    "slug": "Roommates-And-Secret-Admirers",
+    "Genre": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "movie_platform.movie",
+  "pk": 5,
+  "fields": {
+    "Title": "Boy With Red Hair",
+    "Summary": "This is a story about man's need for freedom. The story is about a noble. It starts in a software company in a town. The creation of artificial life plays a major role in this story.",
+    "Image": "posters/5.png",
+    "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4",
+    "Price": "7.00",
+    "Discount": null,
+    "Rating": "G",
+    "Uploaded_on": "2020-12-28T02:07:33.895Z",
+    "slug": "Boy-With-Red-Hair",
+    "Genre": [
+      3
+    ]
+  }
+},
+{
+  "model": "movie_platform.movie",
+  "pk": 6,
+  "fields": {
+    "Title": "Cuddling",
+    "Summary": "This is an on-the-run story. The story is about a confident cleric, a dancer, a newscaster, and an astronomer. It starts in an ancient commonwealth. The story begins with a revelation and ends with a party. The fallout from World War II plays a major role in this story.",
+    "Image": "posters/6.png",
+    "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4",
+    "Price": "6.80",
+    "Discount": null,
+    "Rating": "NC-17",
+    "Uploaded_on": "2020-12-28T02:08:26.699Z",
+    "slug": "Cuddling",
+    "Genre": [
+      7
+    ]
+  }
+},
+{
+  "model": "movie_platform.movie",
+  "pk": 7,
+  "fields": {
+    "Title": "Crow In My Dreams",
+    "Summary": "This is an epic about depression. The story is about a barbarian who is dependent on medication. It starts in a grocery store in a port city. The crux of the story involves someone getting drunk. The role of technology in the modern world plays a major part in the story.",
+    "Image": "posters/7.png",
+    "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4",
+    "Price": "8.00",
+    "Discount": null,
+    "Rating": "PG-13",
+    "Uploaded_on": "2020-12-28T02:09:10.752Z",
+    "slug": "Crow-In-My-Dreams",
+    "Genre": [
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "movie_platform.movie",
+  "pk": 8,
+  "fields": {
+    "Title": "Ghosts In The Fog",
+    "Summary": "The story is about a hacker. It takes place in a military outpost. The crux of the story involves a murder. Archaeology versus respecting native cultures plays a major role in this story.",
+    "Image": "posters/8.png",
+    "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4",
+    "Price": "9.00",
+    "Discount": null,
+    "Rating": "PG-13",
+    "Uploaded_on": "2020-12-28T02:10:15.853Z",
+    "slug": "Ghosts-In-The-Fog",
+    "Genre": [
+      4,
+      7
+    ]
+  }
+},
+{
+  "model": "movie_platform.movie",
+  "pk": 9,
+  "fields": {
+    "Title": "Prize Of Hell",
+    "Summary": "This is a tale about friendship and how one man can make a difference. The story is about an eccentric teacher who is constantly annoyed by an investor. It takes place in a crypt. A magical accident plays an important role.",
+    "Image": "posters/9.png",
+    "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4",
+    "Price": "7.90",
+    "Discount": null,
+    "Rating": "R",
+    "Uploaded_on": "2020-12-28T02:11:49.281Z",
+    "slug": "Prize-Of-Hell",
+    "Genre": [
+      2,
+      6
+    ]
+  }
+},
+{
+  "model": "movie_platform.movie",
+  "pk": 10,
+  "fields": {
+    "Title": "Age In My Sins",
+    "Summary": "The story is about a librarian who is constantly opposing a bullying video game programmer. It takes place in a town in Africa. Technology getting out of hand is a major issue of the story.",
+    "Image": "posters/10.png",
+    "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4",
+    "Price": "8.50",
+    "Discount": null,
+    "Rating": "PG-13",
+    "Uploaded_on": "2020-12-28T02:12:34.683Z",
+    "slug": "Age-In-My-Sins",
+    "Genre": [
+      1,
+      4
+    ]
+  }
+},
+{
+  "model": "movie_platform.movie",
+  "pk": 11,
+  "fields": {
+    "Title": "Celebrate My Life",
+    "Summary": "This is a drama/horror with an emphasis on taking control of one's life. The story is about an arch-mage who hates a focused midwife. It takes place in a marketplace in a colony. International crime plays a major role in this story.",
+    "Image": "posters/11.png",
+    "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4",
+    "Price": "8.00",
+    "Discount": null,
+    "Rating": "NC-17",
+    "Uploaded_on": "2020-12-28T02:59:20.994Z",
+    "slug": "Celebrate-My-Life",
+    "Genre": [
+      7
+    ]
+  }
+},
+{
+  "model": "movie_platform.movie",
+  "pk": 12,
+  "fields": {
+    "Title": "Women And Women",
+    "Summary": "Young, available and good-looking, an unlikely relationship starts to blossom for the main character when they are introduced to a charming stranger. Soon becoming smitten with the love interest, the main character gives up on the idea of love when another person with much better chances than the main character shows up and results in animosity among the all those involved, and some who aren't.",
+    "Image": "posters/12.png",
+    "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4",
+    "Price": "8.50",
+    "Discount": null,
+    "Rating": "R",
+    "Uploaded_on": "2020-12-28T10:29:59.033Z",
+    "slug": "women-and-women",
+    "Genre": [
+      3,
+      5
+    ]
+  }
+},
+{
+  "model": "movie_platform.movie",
+  "pk": 13,
+  "fields": {
+    "Title": "Boys And Martians",
+    "Summary": "Just when things were starting to look great, the main character is forced into action when a long lost love returns, asking them for a favour; it requires them to give up their current lifestyle. Driven by fear, the main character, with the help of their loved ones, manages to escape from captivity and flee to a safe haven.",
+    "Image": "posters/13.png",
+    "Link": "https://movierium-app.s3-eu-west-1.amazonaws.com/movie1.mp4",
+    "Price": "9.00",
+    "Discount": "1.50",
+    "Rating": "G",
+    "Uploaded_on": "2021-01-10T13:01:25.479Z",
+    "slug": "boys-and-martians",
+    "Genre": [
+      2
+    ]
+  }
+}
+]
